@@ -26,11 +26,13 @@ class DBpediaService {
 
       const results = response.data.results.bindings.map(result => ({
         uri: result.disease?.value,
-        name: result.label?.value,
-        description: result.abstract?.value,
+        label: result.label?.value || result.name?.value,
+        abstract: result.abstract?.value || result.description?.value,
         icd10: result.icd10?.value,
         specialty: result.specialty?.value,
-        field: result.field?.value
+        field: result.field?.value,
+        dbpediaPage: result.disease?.value,
+        thumbnail: result.thumbnail?.value
       }));
 
       return results;
@@ -90,8 +92,8 @@ class DBpediaService {
 
       return {
         uri,
-        name: base.label?.value,
-        description: base.abstract?.value,
+        label: base.label?.value,
+        abstract: base.abstract?.value,
         icd10: base.icd10?.value,
         specialty: base.specialty?.value,
         field: base.field?.value,
