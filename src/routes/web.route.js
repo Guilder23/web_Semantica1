@@ -9,7 +9,8 @@ router.get('/', searchController.home);
 // Búsqueda
 router.get('/search', searchController.search);
 
-// Detalle de enfermedad
-router.get('/disease/:uri', searchController.diseaseDetails);
+// Detalle de concepto de calidad de software
+router.get('/concept/:uri', searchController.conceptDetails);
+router.get('/disease/:uri', searchController.conceptDetails);
 
 module.exports = router;

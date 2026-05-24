@@ -5,15 +5,15 @@
       <div class="col-lg-6 hero-image-col">
         <div class="hero-image-wrapper">
           <img
-            src="/images/medicina.jpg"
+            src="/images/software-quality.svg"
             class="hero-image"
-            alt="Explora información médica"
+            alt="Explora conceptos de calidad de software"
             loading="lazy"
           />
           <div class="hero-overlay">
             <div class="overlay-content">
-              <h2 class="hero-subtitle">Explora Información Médica</h2>
-              <p class="hero-text">Consulta enfermedades y conceptos clínicos importantes</p>
+              <h2 class="hero-subtitle">Explora Calidad de Software</h2>
+              <p class="hero-text">Consulta mantenibilidad, pruebas, deuda técnica y buenas prácticas</p>
             </div>
           </div>
         </div>
@@ -22,16 +22,16 @@
       <!-- Columna de contenido (derecha en desktop, abajo en móvil) -->
       <div class="col-lg-6 hero-content-col">
         <div class="hero-content">
-          <h1 class="hero-title">Buscador de Medicina</h1>
+          <h1 class="hero-title">Buscador de Calidad de Software</h1>
           <div class="hero-description">
             <p>
-              Bienvenido a nuestro buscador especializado en medicina. Utilizando la potencia de DBpedia,
-              te ofrecemos información detallada sobre enfermedades, síndromes, órganos y conceptos médicos
-              relevantes para la práctica clínica y el estudio académico.
+              Bienvenido a nuestro buscador especializado en calidad de software. Ahora la búsqueda se apoya
+              en una ontología local con conceptos de mantenibilidad, confiabilidad, pruebas automatizadas,
+              refactorización y documentación técnica.
             </p>
             <p>
-              Encuentra enfermedades por nombre, especialidad, código CIE-10 u otros criterios.
-              Explora información útil para el estudio, la consulta clínica o la educación en salud.
+              Encuentra conceptos por nombre o por descripción y explora relaciones entre prácticas y atributos
+              de calidad para análisis, estudio o documentación de proyectos.
             </p>
           </div>
           
@@ -242,11 +242,11 @@
   </style>
 </div>
 
-<!-- Sección de enfermedades destacadas -->
+<!-- Sección de conceptos destacados -->
 {{#if featuredDiseases.length}}
   <section class="featured-diseases">
     <div class="container">
-      <h2 class="section-title">Enfermedades Destacadas</h2>
+      <h2 class="section-title">Conceptos Destacados</h2>
       <div class="diseases-grid">
         {{#each featuredDiseases}}
           <div class="disease-card">

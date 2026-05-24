@@ -1,0 +1,108 @@
+@prefix : <http://www.semanticweb.org/guilder/ontologies/2026/5/calidad-software#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:CalidadDeSoftware a owl:Class ;
+    rdfs:label "Calidad de software"@es ;
+    rdfs:comment "Campo que estudia los atributos que hacen que un producto software sea util, seguro, mantenible y confiable."@es .
+
+:CaracteristicaCalidad a owl:Class ;
+    rdfs:label "Caracteristica de calidad"@es ;
+    rdfs:comment "Atributo evaluable que contribuye a la calidad global de una aplicacion software."@es .
+
+:ISO25010 a owl:Class ;
+    rdfs:subClassOf :CalidadDeSoftware ;
+    rdfs:label "ISO/IEC 25010"@es ;
+    rdfs:comment "Modelo de referencia para evaluar calidad de producto y calidad en uso en software."@es .
+
+:Mantenibilidad a owl:Class ;
+    rdfs:subClassOf :CaracteristicaCalidad ;
+    rdfs:label "Mantenibilidad"@es ;
+    rdfs:comment "Facilidad con la que el software puede ser analizado, corregido, adaptado y mejorado."@es .
+
+:Modularidad a owl:Class ;
+    rdfs:subClassOf :Mantenibilidad ;
+    rdfs:label "Modularidad"@es ;
+    rdfs:comment "Capacidad de organizar el sistema en componentes coherentes y poco acoplados."@es .
+
+:Testabilidad a owl:Class ;
+    rdfs:subClassOf :Mantenibilidad ;
+    rdfs:label "Testabilidad"@es ;
+    rdfs:comment "Facilidad con la que se pueden crear y ejecutar pruebas automatizadas sobre el sistema."@es .
+
+:Refactorizacion a owl:Class ;
+    rdfs:subClassOf :CaracteristicaCalidad ;
+    rdfs:label "Refactorizacion"@es ;
+    rdfs:comment "Proceso de mejorar la estructura interna del codigo sin cambiar su comportamiento observable."@es .
+
+:DeudaTecnica a owl:Class ;
+    rdfs:subClassOf :CaracteristicaCalidad ;
+    rdfs:label "Deuda tecnica"@es ;
+    rdfs:comment "Costo futuro acumulado por decisiones rapidas que reducen la calidad del software."@es .
+
+:Confiabilidad a owl:Class ;
+    rdfs:subClassOf :CaracteristicaCalidad ;
+    rdfs:label "Confiabilidad"@es ;
+    rdfs:comment "Capacidad del software para mantener su nivel de servicio bajo condiciones especificadas."@es .
+
+:Disponibilidad a owl:Class ;
+    rdfs:subClassOf :Confiabilidad ;
+    rdfs:label "Disponibilidad"@es ;
+    rdfs:comment "Grado en que el sistema permanece operativo y accesible cuando se requiere."@es .
+
+:Seguridad a owl:Class ;
+    rdfs:subClassOf :CaracteristicaCalidad ;
+    rdfs:label "Seguridad"@es ;
+    rdfs:comment "Capacidad del software para proteger informacion, accesos y operaciones contra amenazas."@es .
+
+:Usabilidad a owl:Class ;
+    rdfs:subClassOf :CaracteristicaCalidad ;
+    rdfs:label "Usabilidad"@es ;
+    rdfs:comment "Facilidad con la que los usuarios pueden entender, aprender y usar el sistema."@es .
+
+:Eficiencia a owl:Class ;
+    rdfs:subClassOf :CaracteristicaCalidad ;
+    rdfs:label "Eficiencia"@es ;
+    rdfs:comment "Relación entre el rendimiento del software y los recursos que consume."@es .
+
+:Portabilidad a owl:Class ;
+    rdfs:subClassOf :CaracteristicaCalidad ;
+    rdfs:label "Portabilidad"@es ;
+    rdfs:comment "Facilidad para mover el software entre entornos, plataformas o configuraciones."@es .
+
+:AnalisisEstatico a owl:Class ;
+    rdfs:subClassOf :CaracteristicaCalidad ;
+    rdfs:label "Analisis estatico"@es ;
+    rdfs:comment "Revision automatica del codigo fuente sin ejecutarlo para detectar defectos y riesgos."@es .
+
+:PruebasAutomatizadas a owl:Class ;
+    rdfs:subClassOf :CaracteristicaCalidad ;
+    rdfs:label "Pruebas automatizadas"@es ;
+    rdfs:comment "Conjunto de pruebas repetibles que ayudan a validar el comportamiento del software."@es .
+
+:CoberturaDePruebas a owl:Class ;
+    rdfs:subClassOf :PruebasAutomatizadas ;
+    rdfs:label "Cobertura de pruebas"@es ;
+    rdfs:comment "Porcentaje del codigo o comportamiento cubierto por pruebas automatizadas."@es .
+
+:RevisionDeCodigo a owl:Class ;
+    rdfs:subClassOf :CaracteristicaCalidad ;
+    rdfs:label "Revision de codigo"@es ;
+    rdfs:comment "Practica de inspeccionar el codigo entre pares para mejorar calidad, seguridad y consistencia."@es .
+
+:IntegracionContinua a owl:Class ;
+    rdfs:subClassOf :CaracteristicaCalidad ;
+    rdfs:label "Integracion continua"@es ;
+    rdfs:comment "Practica de integrar cambios con frecuencia y validar automaticamente el software."@es .
+
+:DocumentacionTecnica a owl:Class ;
+    rdfs:subClassOf :CaracteristicaCalidad ;
+    rdfs:label "Documentacion tecnica"@es ;
+    rdfs:comment "Documentos que explican arquitectura, uso, mantenimiento y decisiones del sistema."@es .
+
+:Observabilidad a owl:Class ;
+    rdfs:subClassOf :CaracteristicaCalidad ;
+    rdfs:label "Observabilidad"@es ;
+    rdfs:comment "Capacidad de inferir el estado interno del sistema a partir de logs, metricas y trazas."@es .

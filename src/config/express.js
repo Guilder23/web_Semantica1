@@ -52,11 +52,11 @@ module.exports = function(app) {
       t: function(key) {
         const translations = {
           'search_placeholder': {
-            es: 'Buscar enfermedades...',
-            en: 'Search diseases...',
-            pt: 'Procurar jogos...',
-            fr: 'Rechercher des jeux...',
-            de: 'Spiele suchen...'
+            es: 'Buscar conceptos de calidad de software...',
+            en: 'Search software quality concepts...',
+            pt: 'Procurar conceitos de qualidade de software...',
+            fr: 'Rechercher des concepts de qualité logicielle...',
+            de: 'Konzepte der Softwarequalität suchen...'
           },
           'search_button': {
             es: 'Buscar',
@@ -66,11 +66,11 @@ module.exports = function(app) {
             de: 'Suchen'
           },
           'no_results': {
-            es: 'No se encontraron resultados',
-            en: 'No results found',
-            pt: 'Nenhum resultado encontrado',
-            fr: 'Aucun résultat trouvé',
-            de: 'Keine Ergebnisse gefunden'
+            es: 'No se encontraron conceptos de calidad de software',
+            en: 'No software quality concepts found',
+            pt: 'Nenhum conceito de qualidade de software encontrado',
+            fr: 'Aucun concept de qualité logicielle trouvé',
+            de: 'Keine Konzepte zur Softwarequalität gefunden'
           }
           // Agrega más traducciones según necesites
         };

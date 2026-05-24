@@ -1,0 +1,63 @@
+<svg width="960" height="640" viewBox="0 0 960 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="40" x2="860" y2="600" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="0.55" stop-color="#0F766E"/>
+      <stop offset="1" stop-color="#14B8A6"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="220" y1="150" x2="720" y2="500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E2E8F0" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="310" y1="180" x2="700" y2="430" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22C55E"/>
+      <stop offset="1" stop-color="#38BDF8"/>
+    </linearGradient>
+    <filter id="shadow" x="130" y="80" width="700" height="520" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="30" flood-color="#020617" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="960" height="640" rx="40" fill="url(#bg)"/>
+  <circle cx="130" cy="120" r="90" fill="#38BDF8" fill-opacity="0.14"/>
+  <circle cx="820" cy="120" r="110" fill="#22C55E" fill-opacity="0.12"/>
+  <circle cx="800" cy="540" r="150" fill="#0EA5E9" fill-opacity="0.12"/>
+
+  <g filter="url(#shadow)">
+    <rect x="190" y="110" width="580" height="420" rx="28" fill="url(#panel)" stroke="#E2E8F0" stroke-opacity="0.22"/>
+    <rect x="230" y="150" width="500" height="46" rx="14" fill="#0F172A" fill-opacity="0.45"/>
+    <circle cx="257" cy="173" r="7" fill="#FB7185"/>
+    <circle cx="281" cy="173" r="7" fill="#FBBF24"/>
+    <circle cx="305" cy="173" r="7" fill="#4ADE80"/>
+
+    <rect x="230" y="220" width="280" height="58" rx="18" fill="#E2E8F0" fill-opacity="0.12"/>
+    <rect x="230" y="292" width="340" height="58" rx="18" fill="#E2E8F0" fill-opacity="0.12"/>
+    <rect x="230" y="364" width="240" height="58" rx="18" fill="#E2E8F0" fill-opacity="0.12"/>
+
+    <path d="M605 210C621 210 634 223 634 239V320C634 336 621 349 605 349H547C531 349 518 336 518 320V239C518 223 531 210 547 210H605Z" fill="url(#accent)" fill-opacity="0.18" stroke="#A7F3D0" stroke-opacity="0.55"/>
+    <path d="M564 277L581 295L614 258" stroke="#ECFEFF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <rect x="520" y="376" width="140" height="18" rx="9" fill="#E2E8F0" fill-opacity="0.22"/>
+    <rect x="520" y="406" width="180" height="18" rx="9" fill="#E2E8F0" fill-opacity="0.14"/>
+    <rect x="520" y="436" width="120" height="18" rx="9" fill="#E2E8F0" fill-opacity="0.12"/>
+
+    <g transform="translate(660 358)">
+      <circle cx="40" cy="40" r="40" fill="#0F172A" fill-opacity="0.35" stroke="#BAE6FD" stroke-opacity="0.3"/>
+      <path d="M40 16V24" stroke="#E0F2FE" stroke-width="6" stroke-linecap="round"/>
+      <path d="M40 56V64" stroke="#E0F2FE" stroke-width="6" stroke-linecap="round"/>
+      <path d="M16 40H24" stroke="#E0F2FE" stroke-width="6" stroke-linecap="round"/>
+      <path d="M56 40H64" stroke="#E0F2FE" stroke-width="6" stroke-linecap="round"/>
+      <path d="M24 24L30 30" stroke="#E0F2FE" stroke-width="6" stroke-linecap="round"/>
+      <path d="M50 50L56 56" stroke="#E0F2FE" stroke-width="6" stroke-linecap="round"/>
+      <path d="M56 24L50 30" stroke="#E0F2FE" stroke-width="6" stroke-linecap="round"/>
+      <path d="M30 50L24 56" stroke="#E0F2FE" stroke-width="6" stroke-linecap="round"/>
+      <circle cx="40" cy="40" r="14" fill="url(#accent)"/>
+    </g>
+  </g>
+
+  <g opacity="0.95">
+    <path d="M250 510H710" stroke="#BAE6FD" stroke-opacity="0.18" stroke-width="2" stroke-dasharray="10 10"/>
+    <text x="250" y="562" fill="#E2E8F0" fill-opacity="0.72" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="600">Calidad de software</text>
+    <text x="250" y="592" fill="#E2E8F0" fill-opacity="0.64" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18">Pruebas, mantenibilidad, seguridad y observabilidad</text>
+  </g>
+</svg>

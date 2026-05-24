@@ -1,9 +1,8 @@
-const dbpediaService = require('../services/dbpediaService');
-const translationService = require('../services/translationService');
+const rdfService = require('../services/rdfService');
 
 exports.home = (req, res) => {
   res.render('index', { 
-    title: 'Buscador Semántico de Medicina',
+    title: 'Buscador Semántico de Calidad de Software',
     lang: req.lang || 'es'
   });
 };
@@ -12,65 +11,55 @@ exports.search = async (req, res) => {
   try {
     const { q } = req.query;
     const lang = req.lang || 'es';
-    
-    let results = await dbpediaService.searchDiseases(q, lang);
-    
-    if (lang !== 'en') {
-      results = await Promise.all(
-        results.map(disease => translationService.translateResults(disease, lang))
-      );
-    }
-    
-    // Para depuración - ver todos los datos recibidos
-    console.log("Full results data:", JSON.stringify(results, null, 2));
+    const queryText = typeof q === 'string' ? q.trim() : '';
+    const results = queryText ? await rdfService.searchConcepts(queryText) : [];
     
     res.render('search-results', { 
-      title: `Resultados para "${q}"`,
-      query: q,
+      title: queryText ? `Resultados para "${queryText}"` : 'Buscador de Calidad de Software',
+      query: queryText,
+      concepts: results,
       diseases: results,
       isEmpty: results.length === 0,
       lang,
-      showDetails: true // Nueva variable para la vista
+      showDetails: true
     });
   } catch (error) {
     res.status(500).render('error', { 
       title: 'Error',
-      message: 'Error en la búsqueda médica',
+      message: 'Error en la búsqueda de calidad de software',
       error,
       lang: req.lang
     });
   }
 };
 
-exports.diseaseDetails = async (req, res) => {
+exports.conceptDetails = async (req, res) => {
   try {
     const { uri } = req.params;
     const lang = req.lang || 'es';
-    const disease = await dbpediaService.getDiseaseDetails(decodeURIComponent(uri), lang);
+    const concept = await rdfService.getConceptDetails(decodeURIComponent(uri));
     
-    if (!disease) {
+    if (!concept) {
       return res.status(404).render('error', {
-        title: 'Enfermedad no encontrada',
-        message: 'La enfermedad solicitada no fue encontrada',
+        title: 'Concepto no encontrado',
+        message: 'El concepto solicitado no fue encontrado',
         lang
       });
     }
     
-    if (lang !== 'en') {
-      disease = await translationService.translateResults(disease, lang);
-    }
-    
     res.render('disease-detail', { 
-      title: disease.name,
-      disease,
+      title: concept.label,
+      concept,
       lang
     });
   } catch (error) {
     res.status(500).render('error', { 
       title: 'Error',
-      message: 'Error al cargar detalles de la enfermedad',
+      message: 'Error al cargar los detalles del concepto',
       error,
       lang: req.lang
     });
   }
 };
+
+exports.diseaseDetails = exports.conceptDetails;
