@@ -1,0 +1,1460 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl/"
+     xml:base="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:calidad_software="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#afectaA -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#afectaA">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Defecto"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ComponenteSoftware"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#calculadoEn -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#calculadoEn">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#MetricaCalidad"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ComponenteSoftware"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#detecta -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#detecta">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Prueba"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Defecto"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ejecutadoEn -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ejecutadoEn">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Prueba"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoPrueba"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#soporta -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#soporta">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Herramienta"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Prueba"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#tieneDefecto -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#tieneDefecto">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ComponenteSoftware"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Defecto"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#usaHerramienta -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#usaHerramienta">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ProcesoDesarrollo"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Herramienta"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#validaA -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#validaA">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Prueba"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Requerimiento"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#automatizado -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#automatizado">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Prueba"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#configuracion -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#configuracion">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoPrueba"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#descripcion -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#descripcion">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Defecto"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ProcesoDesarrollo"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Prueba"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Requerimiento"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#estado -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#estado">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Defecto"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Prueba"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Requerimiento"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#fechaMedicion -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#fechaMedicion">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#MetricaCalidad"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#fechaReporte -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#fechaReporte">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Defecto"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#idDefecto -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#idDefecto">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Defecto"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#idRequerimiento -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#idRequerimiento">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Requerimiento"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#lenguaje -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#lenguaje">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ComponenteSoftware"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#nombre -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#nombre">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ComponenteSoftware"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Herramienta"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Prueba"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#nombreEntorno -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#nombreEntorno">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoPrueba"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#nombreFase -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#nombreFase">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ProcesoDesarrollo"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#nombreMetrica -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#nombreMetrica">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#MetricaCalidad"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#numeroLineasCodigo -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#numeroLineasCodigo">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ComponenteSoftware"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#prioridad -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#prioridad">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Defecto"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Requerimiento"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#severidad -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#severidad">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Defecto"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#tiempoEjecucion -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#tiempoEjecucion">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Prueba"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#tipo -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#tipo">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ComponenteSoftware"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoPrueba"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Herramienta"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#unidad -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#unidad">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#MetricaCalidad"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#valor -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#valor">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#MetricaCalidad"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#version -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#version">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Herramienta"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#versionSoftware -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#versionSoftware">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoPrueba"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#API -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#API">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ComponenteSoftware"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Analisis -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Analisis">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ProcesoDesarrollo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#BaseDatos -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#BaseDatos">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ComponenteSoftware"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Bug -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Bug">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Defecto"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Error"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Falla"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#CoberturaPruebas -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#CoberturaPruebas">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#MetricaCalidad"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ComplejidadCodigo -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ComplejidadCodigo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#MetricaCalidad"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ComponenteSoftware -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ComponenteSoftware">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntidadCalidadSoftware"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#tieneDefecto"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Defecto"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#lenguaje"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#nombre"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#numeroLineasCodigo"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#tipo"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Confiabilidad -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Confiabilidad">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#MetricaCalidad"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Defecto -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Defecto">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntidadCalidadSoftware"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#afectaA"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ComponenteSoftware"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#descripcion"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#estado"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#fechaReporte"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#idDefecto"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#prioridad"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#severidad"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#severidad"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange>
+                    <rdfs:Datatype>
+                        <owl:oneOf>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first>Alto</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first>Bajo</rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                <rdf:first>Critico</rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                        <rdf:first>Medio</rdf:first>
+                                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </owl:oneOf>
+                    </rdfs:Datatype>
+                </owl:onDataRange>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#DefectoAlto -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#DefectoAlto">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Defecto"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#DefectoBajo"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#DefectoBloqueante"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#DefectoCritico"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#DefectoMedio"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#DefectoBajo -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#DefectoBajo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Defecto"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#DefectoBloqueante"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#DefectoCritico"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#DefectoMedio"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#DefectoBloqueante -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#DefectoBloqueante">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Defecto"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#DefectoCritico"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#DefectoMedio"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#DefectoCritico -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#DefectoCritico">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Defecto"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#DefectoMedio"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#DefectoMedio -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#DefectoMedio">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Defecto"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#DensidadDefectos -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#DensidadDefectos">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#MetricaCalidad"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Despliegue -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Despliegue">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ProcesoDesarrollo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#DeudaTecnica -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#DeudaTecnica">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#MetricaCalidad"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Diseno -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Diseno">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ProcesoDesarrollo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntidadCalidadSoftware -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntidadCalidadSoftware"/>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoDesarrollo -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoDesarrollo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoPrueba"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoProduccion"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoStaging"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoTesting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoProduccion -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoProduccion">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoPrueba"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoStaging"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoTesting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoPrueba -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoPrueba">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntidadCalidadSoftware"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#configuracion"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#nombreEntorno"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#tipo"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#versionSoftware"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoStaging -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoStaging">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoPrueba"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoTesting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoTesting -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoTesting">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoPrueba"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Error -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Error">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Defecto"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Falla"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Falla -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Falla">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Defecto"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Herramienta -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Herramienta">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntidadCalidadSoftware"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#soporta"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Prueba"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#nombre"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#tipo"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#version"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#HerramientaAnalisisCodigo -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#HerramientaAnalisisCodigo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Herramienta"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#HerramientaCICD -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#HerramientaCICD">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Herramienta"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#HerramientaControlVersiones -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#HerramientaControlVersiones">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Herramienta"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#HerramientaSeguridad -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#HerramientaSeguridad">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Herramienta"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#HerramientaTesting -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#HerramientaTesting">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Herramienta"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Implementacion -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Implementacion">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ProcesoDesarrollo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Mantenimiento -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Mantenimiento">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ProcesoDesarrollo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#MetricaCalidad -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#MetricaCalidad">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntidadCalidadSoftware"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#calculadoEn"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ComponenteSoftware"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#fechaMedicion"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#nombreMetrica"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#unidad"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#valor"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Modulo -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Modulo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ComponenteSoftware"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Planificacion -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Planificacion">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ProcesoDesarrollo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ProcesoDesarrollo -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ProcesoDesarrollo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntidadCalidadSoftware"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#usaHerramienta"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Herramienta"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#descripcion"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#nombreFase"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Prueba -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Prueba">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntidadCalidadSoftware"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#detecta"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Defecto"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#validaA"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Requerimiento"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ejecutadoEn"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoPrueba"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#descripcion"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#automatizado"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#estado"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#nombre"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#tiempoEjecucion"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaAPI -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaAPI">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaNoFuncional"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaAccesibilidad"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaCompatibilidad"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaHumo"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaRendimiento"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaSeguridad"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaUsabilidad"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaAccesibilidad -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaAccesibilidad">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaNoFuncional"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaCompatibilidad"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaHumo"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaRendimiento"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaSeguridad"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaUsabilidad"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaAceptacion -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaAceptacion">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaFuncional"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaIntegracion"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaRegresion"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaSistema"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaUnitaria"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaCompatibilidad -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaCompatibilidad">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaNoFuncional"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaHumo"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaRendimiento"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaSeguridad"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaUsabilidad"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaFuncional -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaFuncional">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Prueba"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaHumo -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaHumo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaNoFuncional"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaRendimiento"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaSeguridad"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaUsabilidad"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaIntegracion -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaIntegracion">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaFuncional"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaRegresion"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaSistema"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaUnitaria"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaNoFuncional -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaNoFuncional">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Prueba"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaRegresion -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaRegresion">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaFuncional"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaSistema"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaUnitaria"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaRendimiento -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaRendimiento">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaNoFuncional"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaSeguridad"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaUsabilidad"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaSeguridad -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaSeguridad">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaNoFuncional"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaUsabilidad"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaSistema -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaSistema">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaFuncional"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaUnitaria"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaUnitaria -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaUnitaria">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaFuncional"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaUsabilidad -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaUsabilidad">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#PruebaNoFuncional"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Pruebas -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Pruebas">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ProcesoDesarrollo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Requerimiento -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Requerimiento">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntidadCalidadSoftware"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#descripcion"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#estado"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#idRequerimiento"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#prioridad"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#RequerimientoFuncional -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#RequerimientoFuncional">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Requerimiento"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#RequerimientoNoFuncional"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#RequerimientoNoFuncional -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#RequerimientoNoFuncional">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Requerimiento"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Servicio -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Servicio">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ComponenteSoftware"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#TasaFallos -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#TasaFallos">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#MetricaCalidad"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#TiempoResolucion -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#TiempoResolucion">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#MetricaCalidad"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#comp1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#comp1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ComponenteSoftware"/>
+        <calidad_software:lenguaje>Java</calidad_software:lenguaje>
+        <calidad_software:nombre>Modulo Login</calidad_software:nombre>
+        <calidad_software:numeroLineasCodigo rdf:datatype="http://www.w3.org/2001/XMLSchema#int">200</calidad_software:numeroLineasCodigo>
+        <calidad_software:tipo>Modulo</calidad_software:tipo>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#def1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#def1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Defecto"/>
+        <calidad_software:afectaA rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#comp1"/>
+        <calidad_software:descripcion>Error en login</calidad_software:descripcion>
+        <calidad_software:estado>Abierto</calidad_software:estado>
+        <calidad_software:fechaReporte rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-01-10T10:00:00</calidad_software:fechaReporte>
+        <calidad_software:idDefecto>BUG-001</calidad_software:idDefecto>
+        <calidad_software:prioridad>Alta</calidad_software:prioridad>
+        <calidad_software:severidad>Alto</calidad_software:severidad>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#entorno1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#entorno1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoPrueba"/>
+        <calidad_software:configuracion>Servidor local</calidad_software:configuracion>
+        <calidad_software:nombreEntorno>Entorno Testing</calidad_software:nombreEntorno>
+        <calidad_software:tipo>Testing</calidad_software:tipo>
+        <calidad_software:versionSoftware>1.0</calidad_software:versionSoftware>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#entorno2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#entorno2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoPrueba"/>
+        <calidad_software:configuracion>Servidor local</calidad_software:configuracion>
+        <calidad_software:nombreEntorno>Desarrollo</calidad_software:nombreEntorno>
+        <calidad_software:tipo>Desarrollo</calidad_software:tipo>
+        <calidad_software:versionSoftware>1.0</calidad_software:versionSoftware>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#entorno3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#entorno3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoPrueba"/>
+        <calidad_software:configuracion>Servidor intermedio</calidad_software:configuracion>
+        <calidad_software:nombreEntorno>Staging</calidad_software:nombreEntorno>
+        <calidad_software:tipo>Testing</calidad_software:tipo>
+        <calidad_software:versionSoftware>1.1</calidad_software:versionSoftware>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#entorno4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#entorno4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#EntornoPrueba"/>
+        <calidad_software:configuracion>Servidor nube</calidad_software:configuracion>
+        <calidad_software:nombreEntorno>Producción</calidad_software:nombreEntorno>
+        <calidad_software:tipo>Producción</calidad_software:tipo>
+        <calidad_software:versionSoftware rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2.0</calidad_software:versionSoftware>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#herr1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#herr1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Herramienta"/>
+        <calidad_software:soporta rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#test1"/>
+        <calidad_software:nombre>JUnit</calidad_software:nombre>
+        <calidad_software:tipo>Testing</calidad_software:tipo>
+        <calidad_software:version>5.0</calidad_software:version>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#metrica1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#metrica1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#MetricaCalidad"/>
+        <calidad_software:calculadoEn rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#comp1"/>
+        <calidad_software:fechaMedicion rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-01-10T10:00:00</calidad_software:fechaMedicion>
+        <calidad_software:nombreMetrica>Cobertura</calidad_software:nombreMetrica>
+        <calidad_software:unidad>Porcentaje</calidad_software:unidad>
+        <calidad_software:valor rdf:datatype="http://www.w3.org/2001/XMLSchema#int">85</calidad_software:valor>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#proceso1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#proceso1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#ProcesoDesarrollo"/>
+        <calidad_software:usaHerramienta rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#herr1"/>
+        <calidad_software:descripcion>Fase de testing</calidad_software:descripcion>
+        <calidad_software:nombreFase>Pruebas</calidad_software:nombreFase>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#req1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#req1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Requerimiento"/>
+        <calidad_software:descripcion>Login del sistema</calidad_software:descripcion>
+        <calidad_software:estado>Activo</calidad_software:estado>
+        <calidad_software:idRequerimiento>REQ-001</calidad_software:idRequerimiento>
+        <calidad_software:prioridad>Alta</calidad_software:prioridad>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#req2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#req2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Requerimiento"/>
+        <calidad_software:descripcion>Registro de usuario</calidad_software:descripcion>
+        <calidad_software:estado>Activo</calidad_software:estado>
+        <calidad_software:idRequerimiento>REQ-002</calidad_software:idRequerimiento>
+        <calidad_software:prioridad>Media</calidad_software:prioridad>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#req3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#req3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Requerimiento"/>
+        <calidad_software:descripcion>Recuperar contraseña</calidad_software:descripcion>
+        <calidad_software:estado>Activo</calidad_software:estado>
+        <calidad_software:idRequerimiento>REQ-003</calidad_software:idRequerimiento>
+        <calidad_software:prioridad>Alta</calidad_software:prioridad>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#req4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#req4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Requerimiento"/>
+        <calidad_software:descripcion>Logout del sistema</calidad_software:descripcion>
+        <calidad_software:estado>Activo</calidad_software:estado>
+        <calidad_software:idRequerimiento>REQ-004</calidad_software:idRequerimiento>
+        <calidad_software:prioridad>Media</calidad_software:prioridad>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#req5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#req5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Requerimiento"/>
+        <calidad_software:descripcion>Perfil de usuario</calidad_software:descripcion>
+        <calidad_software:estado>Activo</calidad_software:estado>
+        <calidad_software:idRequerimiento>REQ-005</calidad_software:idRequerimiento>
+        <calidad_software:prioridad>Baja</calidad_software:prioridad>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#req6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#req6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Requerimiento"/>
+        <calidad_software:descripcion>Cambio de contraseña</calidad_software:descripcion>
+        <calidad_software:estado>Activo</calidad_software:estado>
+        <calidad_software:idRequerimiento>REQ-006</calidad_software:idRequerimiento>
+        <calidad_software:prioridad>Alta</calidad_software:prioridad>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#test1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#test1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Prueba"/>
+        <calidad_software:ejecutadoEn rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#entorno1"/>
+        <calidad_software:validaA rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#req1"/>
+        <calidad_software:automatizado rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</calidad_software:automatizado>
+        <calidad_software:descripcion>Verifica inicio de sesión</calidad_software:descripcion>
+        <calidad_software:estado>Ejecutado</calidad_software:estado>
+        <calidad_software:nombre>Test Login</calidad_software:nombre>
+        <calidad_software:tiempoEjecucion rdf:datatype="http://www.w3.org/2001/XMLSchema#int">5</calidad_software:tiempoEjecucion>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#test2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#test2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Prueba"/>
+        <calidad_software:ejecutadoEn rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#entorno2"/>
+        <calidad_software:validaA rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#req2"/>
+        <calidad_software:automatizado rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</calidad_software:automatizado>
+        <calidad_software:descripcion>Verifica registro</calidad_software:descripcion>
+        <calidad_software:estado>Ejecutado</calidad_software:estado>
+        <calidad_software:nombre>Test Registro</calidad_software:nombre>
+        <calidad_software:tiempoEjecucion rdf:datatype="http://www.w3.org/2001/XMLSchema#int">5</calidad_software:tiempoEjecucion>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#test3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#test3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Prueba"/>
+        <calidad_software:ejecutadoEn rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#entorno3"/>
+        <calidad_software:validaA rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#req3"/>
+        <calidad_software:automatizado rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</calidad_software:automatizado>
+        <calidad_software:descripcion>Verifica recuperación</calidad_software:descripcion>
+        <calidad_software:estado>Ejecutado</calidad_software:estado>
+        <calidad_software:nombre>Test Seguridad</calidad_software:nombre>
+        <calidad_software:tiempoEjecucion rdf:datatype="http://www.w3.org/2001/XMLSchema#int">7</calidad_software:tiempoEjecucion>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#test4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#test4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Prueba"/>
+        <calidad_software:ejecutadoEn rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#entorno2"/>
+        <calidad_software:validaA rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#req4"/>
+        <calidad_software:automatizado rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</calidad_software:automatizado>
+        <calidad_software:descripcion>Verifica cierre sesión</calidad_software:descripcion>
+        <calidad_software:estado>Ejecutado</calidad_software:estado>
+        <calidad_software:nombre>Test Logout</calidad_software:nombre>
+        <calidad_software:tiempoEjecucion rdf:datatype="http://www.w3.org/2001/XMLSchema#int">4</calidad_software:tiempoEjecucion>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#test5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#test5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Prueba"/>
+        <calidad_software:ejecutadoEn rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#entorno3"/>
+        <calidad_software:validaA rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#req5"/>
+        <calidad_software:automatizado rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</calidad_software:automatizado>
+        <calidad_software:descripcion>Verifica perfil</calidad_software:descripcion>
+        <calidad_software:estado>Pendiente</calidad_software:estado>
+        <calidad_software:nombre>Test Perfil</calidad_software:nombre>
+        <calidad_software:tiempoEjecucion rdf:datatype="http://www.w3.org/2001/XMLSchema#int">6</calidad_software:tiempoEjecucion>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#test6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#test6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Prueba"/>
+        <calidad_software:ejecutadoEn rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#entorno2"/>
+        <calidad_software:validaA rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#req6"/>
+        <calidad_software:automatizado rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</calidad_software:automatizado>
+        <calidad_software:descripcion>Cambio contraseña</calidad_software:descripcion>
+        <calidad_software:estado>Ejecutado</calidad_software:estado>
+        <calidad_software:nombre>Test Password</calidad_software:nombre>
+        <calidad_software:tiempoEjecucion rdf:datatype="http://www.w3.org/2001/XMLSchema#int">5</calidad_software:tiempoEjecucion>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#test7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#test7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#Prueba"/>
+        <calidad_software:ejecutadoEn rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#entorno4"/>
+        <calidad_software:validaA rdf:resource="http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#req2"/>
+        <calidad_software:automatizado rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</calidad_software:automatizado>
+        <calidad_software:descripcion>Flujo completo</calidad_software:descripcion>
+        <calidad_software:estado>Pendiente</calidad_software:estado>
+        <calidad_software:nombre>Test Integración</calidad_software:nombre>
+        <calidad_software:tiempoEjecucion rdf:datatype="http://www.w3.org/2001/XMLSchema#int">10</calidad_software:tiempoEjecucion>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+

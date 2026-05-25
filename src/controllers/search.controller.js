@@ -3,7 +3,7 @@ const translationService = require('../services/translationService');
 
 exports.home = (req, res) => {
   res.render('index', { 
-    title: 'Buscador Semántico de Medicina',
+    title: 'Buscador Semántico de Calidad de Software',
     lang: req.lang || 'es'
   });
 };
@@ -17,7 +17,7 @@ exports.search = async (req, res) => {
     
     if (lang !== 'en') {
       results = await Promise.all(
-        results.map(disease => translationService.translateResults(disease, lang))
+        results.map(item => translationService.translateResults(item, lang))
       );
     }
     
@@ -33,9 +33,10 @@ exports.search = async (req, res) => {
       showDetails: true // Nueva variable para la vista
     });
   } catch (error) {
+    console.error('Search controller error:', error);
     res.status(500).render('error', { 
       title: 'Error',
-      message: 'Error en la búsqueda médica',
+      message: 'Error en la búsqueda de calidad de software',
       error,
       lang: req.lang
     });
@@ -46,12 +47,12 @@ exports.diseaseDetails = async (req, res) => {
   try {
     const { uri } = req.params;
     const lang = req.lang || 'es';
-    const disease = await dbpediaService.getDiseaseDetails(decodeURIComponent(uri), lang);
+    let disease = await dbpediaService.getDiseaseDetails(decodeURIComponent(uri), lang);
     
     if (!disease) {
       return res.status(404).render('error', {
-        title: 'Enfermedad no encontrada',
-        message: 'La enfermedad solicitada no fue encontrada',
+        title: 'Recurso no encontrado',
+        message: 'El recurso solicitado no fue encontrado',
         lang
       });
     }
@@ -61,14 +62,15 @@ exports.diseaseDetails = async (req, res) => {
     }
     
     res.render('disease-detail', { 
-      title: disease.name,
+      title: disease.label || 'Detalle de Calidad de Software',
       disease,
       lang
     });
   } catch (error) {
+    console.error('Search controller details error:', error);
     res.status(500).render('error', { 
       title: 'Error',
-      message: 'Error al cargar detalles de la enfermedad',
+      message: 'Error al cargar detalles del recurso',
       error,
       lang: req.lang
     });

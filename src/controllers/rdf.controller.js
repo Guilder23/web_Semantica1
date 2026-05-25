@@ -5,15 +5,16 @@ exports.search = async (req, res) => {
     const { q } = req.query;
     const results = await rdfService.searchDiseases(q);
     res.render('search-results', {
-      title: `Resultados para "${q}"`,
+      title: `Resultados de calidad de software para "${q}"`,
       query: q,
       diseases: results,
       isEmpty: results.length === 0
     });
   } catch (err) {
+    console.error('RDF controller error:', err);
     res.status(500).render('error', {
       title: 'Error',
-      message: 'La búsqueda RDF falló',
+      message: 'La búsqueda RDF de calidad de software falló',
       error: err
     });
   }
@@ -25,13 +26,14 @@ exports.diseaseDetails = async (req, res) => {
     const decodedUri = decodeURIComponent(uri);
     const disease = await rdfService.getDiseaseDetails(decodedUri);
     res.render('disease-detail', {
-      title: disease['http://www.w3.org/2000/01/rdf-schema#label'] || 'Detalles de la Enfermedad',
+      title: disease.label || 'Detalles de Calidad de Software',
       disease
     });
   } catch (err) {
+    console.error('RDF controller details error:', err);
     res.status(500).render('error', {
       title: 'Error',
-      message: 'Failed to load disease details',
+      message: 'Failed to load quality software details',
       error: err
     });
   }

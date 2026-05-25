@@ -29,6 +29,14 @@ module.exports = function(app) {
         }
         return str;
       },
+
+      // Helper para unir arreglos en texto
+      join: function(arr, separator) {
+        if (!Array.isArray(arr)) {
+          return arr || '';
+        }
+        return arr.join(separator || ', ');
+      },
       
       // Helper para año actual
       currentYear: function() {

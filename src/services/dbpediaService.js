@@ -1,16 +1,16 @@
 const axios = require('axios');
 const { URL, URLSearchParams } = require('url');
 const dbpediaConfig = require('../config/dbpedia');
-const { searchDiseases } = require('../utils/sparqlQueries');
+const { searchSoftware } = require('../utils/sparqlQueries');
 
 class DBpediaService {
   _getEndpoint() {
     return dbpediaConfig.endpoint;
   }
 
-  async searchDiseases(term, lang = 'es') {
+  async searchSoftware(term, lang = 'es') {
     const endpoint = this._getEndpoint();
-    const query = searchDiseases(term, lang);
+    const query = searchSoftware(term, lang);
 
     try {
       const response = await axios.get(endpoint, {
@@ -25,12 +25,15 @@ class DBpediaService {
       }
 
       const results = response.data.results.bindings.map(result => ({
-        uri: result.disease?.value,
-        name: result.label?.value,
-        description: result.abstract?.value,
-        icd10: result.icd10?.value,
-        specialty: result.specialty?.value,
-        field: result.field?.value
+        uri: result.entity?.value,
+        label: result.label?.value || result.name?.value,
+        abstract: result.abstract?.value || result.description?.value,
+        developer: result.developer?.value,
+        programmingLanguage: result.programmingLanguage?.value,
+        latestReleaseVersion: result.latestReleaseVersion?.value,
+        license: result.license?.value,
+        dbpediaPage: result.entity?.value,
+        thumbnail: result.thumbnail?.value
       }));
 
       return results;
@@ -40,27 +43,29 @@ class DBpediaService {
     }
   }
 
-  async getDiseaseDetails(uri, lang = 'es') {
+  async getSoftwareDetails(uri, lang = 'es') {
     const endpoint = this._getEndpoint();
 
     const query = `
       PREFIX dbo: <http://dbpedia.org/ontology/>
       PREFIX dbp: <http://dbpedia.org/property/>
       PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+      PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
-      SELECT DISTINCT ?label ?abstract ?icd10 ?specialty ?field ?symptom ?treatment ?cause ?riskFactor WHERE {
-        BIND(<${uri}> AS ?disease)
-        ?disease rdfs:label ?label .
-        FILTER(LANG(?label) = "${lang}")
+      SELECT DISTINCT ?label ?abstract ?developer ?programmingLanguage ?latestReleaseVersion ?license ?operatingSystem ?repository ?homepage ?thumbnail WHERE {
+        BIND(<${uri}> AS ?software)
+        ?software rdfs:label ?label .
+        FILTER(LANG(?label) = "${lang}" || LANG(?label) = "en")
 
-        OPTIONAL { ?disease dbo:abstract ?abstract . FILTER(LANG(?abstract)="${lang}") }
-        OPTIONAL { ?disease dbp:icd10 ?icd10 }
-        OPTIONAL { ?disease dbo:medicalSpecialty ?specialty }
-        OPTIONAL { ?disease dbo:field ?field }
-        OPTIONAL { ?disease dbo:symptom ?symptom }
-        OPTIONAL { ?disease dbo:treatment ?treatment }
-        OPTIONAL { ?disease dbp:causes ?cause }
-        OPTIONAL { ?disease dbp:risk ?riskFactor }
+        OPTIONAL { ?software dbo:abstract ?abstract . FILTER(LANG(?abstract)="${lang}" || LANG(?abstract)="en") }
+        OPTIONAL { ?software dbo:developer ?developer }
+        OPTIONAL { ?software dbp:programmingLanguage ?programmingLanguage }
+        OPTIONAL { ?software dbo:latestReleaseVersion ?latestReleaseVersion }
+        OPTIONAL { ?software dbo:license ?license }
+        OPTIONAL { ?software dbo:operatingSystem ?operatingSystem }
+        OPTIONAL { ?software dbo:repository ?repository }
+        OPTIONAL { ?software foaf:homepage ?homepage }
+        OPTIONAL { ?software dbo:thumbnail ?thumbnail }
       }
       LIMIT 200
     `;
@@ -90,20 +95,32 @@ class DBpediaService {
 
       return {
         uri,
-        name: base.label?.value,
-        description: base.abstract?.value,
-        icd10: base.icd10?.value,
-        specialty: base.specialty?.value,
-        field: base.field?.value,
-        symptoms: collectUnique('symptom'),
-        treatments: collectUnique('treatment'),
-        causes: collectUnique('cause'),
-        riskFactors: collectUnique('riskFactor')
+        label: base.label?.value,
+        abstract: base.abstract?.value,
+        descripcion: base.abstract?.value,
+        tipo: collectUnique('programmingLanguage').join(', '),
+        developer: collectUnique('developer'),
+        programmingLanguages: collectUnique('programmingLanguage'),
+        operatingSystems: collectUnique('operatingSystem'),
+        repositories: collectUnique('repository'),
+        homepages: collectUnique('homepage'),
+        latestReleaseVersion: base.latestReleaseVersion?.value,
+        license: base.license?.value,
+        thumbnail: base.thumbnail?.value
       };
     } catch (error) {
       this._handleError(error);
       return null;
     }
+  }
+
+  // Aliases para compatibilidad con controladores existentes
+  async searchDiseases(term, lang = 'es') {
+    return this.searchSoftware(term, lang);
+  }
+
+  async getDiseaseDetails(uri, lang = 'es') {
+    return this.getSoftwareDetails(uri, lang);
   }
 
   _handleError(error) {
@@ -117,4 +134,3 @@ class DBpediaService {
 }
 
 module.exports = new DBpediaService();
-

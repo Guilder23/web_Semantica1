@@ -8,17 +8,17 @@
 
 {{#if isEmpty}}
   <div class="no-results">
-    {{#if (eq lang 'es')}}No se encontraron enfermedades que coincidan con tu búsqueda.{{/if}}
-    {{#if (eq lang 'en')}}No diseases found matching your search.{{/if}}
-    {{#if (eq lang 'pt')}}Nenhuma doença encontrada correspondente à sua pesquisa.{{/if}}
-    {{#if (eq lang 'de')}}Keine Krankheiten gefunden, die Ihrer Suche entsprechen.{{/if}}
-    {{#if (eq lang 'fr')}}Aucune maladie trouvée correspondant à votre recherche.{{/if}}
+    {{#if (eq lang 'es')}}No se encontro informacion de calidad de software que coincida con tu busqueda.{{/if}}
+    {{#if (eq lang 'en')}}No software quality information found matching your search.{{/if}}
+    {{#if (eq lang 'pt')}}Nenhuma informacao de qualidade de software correspondente a sua pesquisa foi encontrada.{{/if}}
+    {{#if (eq lang 'de')}}Keine Informationen zur Softwarequalitat gefunden, die Ihrer Suche entsprechen.{{/if}}
+    {{#if (eq lang 'fr')}}Aucune information de qualite logicielle correspondant a votre recherche n a ete trouvee.{{/if}}
   </div>
 {{else}}
   <div class="diseases-grid">
     {{#each diseases}}
       <div class="disease-card">
-        <!-- Encabezado con el nombre del enfermedad -->
+        <!-- Encabezado con el nombre del recurso -->
         <div class="disease-header">
           <h2 class="disease-title">{{label}}</h2>
         </div>
@@ -32,69 +32,69 @@
 
         <!-- Cuerpo con descripción -->
         <div class="disease-body">
-          {{#if genre}}
+          {{#if tipo}}
             <div class="disease-tag genre-tag">
               <svg xmlns="http://www.w3.org/2000/svg" class="tag-icon" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
               </svg>
-              <span>{{genre}}</span>
+              <span>{{tipo}}</span>
             </div>
           {{/if}}
           
-          <p class="disease-abstract">{{truncate abstract 2000}}</p>
+          <p class="disease-abstract">{{truncate descripcion 2000}}</p>
           
           <!-- Detalles adicionales -->
           <div class="disease-details">
-            {{#if players}}
+            {{#if estado}}
               <div class="detail-item">
                 <svg xmlns="http://www.w3.org/2000/svg" class="detail-icon" viewBox="0 0 20 20" fill="currentColor">
                   <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v1h8v-1zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-1a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v1h-3zM4.75 12.094A5.973 5.973 0 004 15v1H1v-1a3 3 0 013.75-2.906z" />
                 </svg>
                 <div class="detail-text">
                   <span class="detail-label">
-                    {{#if (eq ../lang 'es')}}Jugadores{{/if}}
-                    {{#if (eq ../lang 'en')}}Players{{/if}}
-                    {{#if (eq ../lang 'pt')}}Jogadores{{/if}}
-                    {{#if (eq ../lang 'de')}}Spieler{{/if}}
-                    {{#if (eq ../lang 'fr')}}Joueurs{{/if}}
+                    {{#if (eq ../lang 'es')}}Estado{{/if}}
+                    {{#if (eq ../lang 'en')}}State{{/if}}
+                    {{#if (eq ../lang 'pt')}}Estado{{/if}}
+                    {{#if (eq ../lang 'de')}}Status{{/if}}
+                    {{#if (eq ../lang 'fr')}}Etat{{/if}}
                   </span>
-                  <span class="detail-value">{{players}}</span>
+                  <span class="detail-value">{{estado}}</span>
                 </div>
               </div>
             {{/if}}
             
-            {{#if firstPlayed}}
+            {{#if prioridad}}
               <div class="detail-item">
                 <svg xmlns="http://www.w3.org/2000/svg" class="detail-icon" viewBox="0 0 20 20" fill="currentColor">
                   <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
                 </svg>
                 <div class="detail-text">
                   <span class="detail-label">
-                    {{#if (eq ../lang 'es')}}Lanzamiento{{/if}}
-                    {{#if (eq ../lang 'en')}}Released{{/if}}
-                    {{#if (eq ../lang 'pt')}}Lançamento{{/if}}
-                    {{#if (eq ../lang 'de')}}Veröffentlichung{{/if}}
-                    {{#if (eq ../lang 'fr')}}Sortie{{/if}}
+                    {{#if (eq ../lang 'es')}}Prioridad{{/if}}
+                    {{#if (eq ../lang 'en')}}Priority{{/if}}
+                    {{#if (eq ../lang 'pt')}}Prioridade{{/if}}
+                    {{#if (eq ../lang 'de')}}Prioritat{{/if}}
+                    {{#if (eq ../lang 'fr')}}Priorite{{/if}}
                   </span>
-                  <span class="detail-value">{{firstPlayed}}</span>
+                  <span class="detail-value">{{prioridad}}</span>
                 </div>
               </div>
             {{/if}}
             
-            {{#if equipment}}
+            {{#if severidad}}
               <div class="detail-item">
                 <svg xmlns="http://www.w3.org/2000/svg" class="detail-icon" viewBox="0 0 20 20" fill="currentColor">
                   <path fill-rule="evenodd" d="M11.17 3a1 1 0 01.98 1l1.12 7.2a3 3 0 002.97 2.6h3.28a1 1 0 010 2h-3.28a5 5 0 01-4.95-4.3l-1.12-7.2H5a3 3 0 00-3 3v8a3 3 0 003 3h8a3 3 0 003-3v-3a1 1 0 112 0v3a5 5 0 01-5 5H5a5 5 0 01-5-5v-8a5 5 0 015-5h6.17z" clip-rule="evenodd" />
                 </svg>
                 <div class="detail-text">
                   <span class="detail-label">
-                    {{#if (eq ../lang 'es')}}Equipo{{/if}}
-                    {{#if (eq ../lang 'en')}}Equipment{{/if}}
-                    {{#if (eq ../lang 'pt')}}Equipamento{{/if}}
-                    {{#if (eq ../lang 'de')}}Ausrüstung{{/if}}
-                    {{#if (eq ../lang 'fr')}}Équipement{{/if}}
+                    {{#if (eq ../lang 'es')}}Severidad{{/if}}
+                    {{#if (eq ../lang 'en')}}Severity{{/if}}
+                    {{#if (eq ../lang 'pt')}}Severidade{{/if}}
+                    {{#if (eq ../lang 'de')}}Schweregrad{{/if}}
+                    {{#if (eq ../lang 'fr')}}Gravite{{/if}}
                   </span>
-                  <span class="detail-value">{{equipment}}</span>
+                  <span class="detail-value">{{severidad}}</span>
                 </div>
               </div>
             {{/if}}
@@ -111,20 +111,28 @@
             {{#if (eq ../lang 'fr')}}Références{{/if}}
           </h3>
           <div class="disease-links">
-            {{#if genre}}
-              <a href="{{genre}}" class="disease-link" target="_blank" rel="noopener noreferrer">
+            {{#if lenguaje}}
+              <a href="#" class="disease-link" aria-disabled="true">
                 <svg xmlns="http://www.w3.org/2000/svg" class="link-icon" viewBox="0 0 20 20" fill="currentColor">
                   <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd" />
                 </svg>
-                <span>Especialidad</span>
+                <span>Lenguaje: {{lenguaje}}</span>
               </a>
             {{/if}}
-            {{#if dbpediaPage}}
-              <a href="{{dbpediaPage}}" class="disease-link" target="_blank" rel="noopener noreferrer">
+            {{#if version}}
+              <a href="#" class="disease-link" aria-disabled="true">
                 <svg xmlns="http://www.w3.org/2000/svg" class="link-icon" viewBox="0 0 20 20" fill="currentColor">
                   <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
                 </svg>
-                <span>DBPedia</span>
+                <span>Version: {{version}}</span>
+              </a>
+            {{/if}}
+            {{#if uri}}
+              <a href="{{uri}}" class="disease-link" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" class="link-icon" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
+                </svg>
+                <span>RDF</span>
               </a>
             {{/if}}
           </div>
