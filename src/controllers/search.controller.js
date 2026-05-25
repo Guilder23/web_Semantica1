@@ -3,7 +3,7 @@ const translationService = require('../services/translationService');
 
 exports.home = (req, res) => {
   res.render('index', { 
-    title: 'Buscador Semántico de Medicina',
+    title: 'Buscador Semántico de Calidad de Software',
     lang: req.lang || 'es'
   });
 };
@@ -13,11 +13,11 @@ exports.search = async (req, res) => {
     const { q } = req.query;
     const lang = req.lang || 'es';
     
-    let results = await dbpediaService.searchDiseases(q, lang);
+    let results = await dbpediaService.searchConcepts(q, lang);
     
     if (lang !== 'en') {
       results = await Promise.all(
-        results.map(disease => translationService.translateResults(disease, lang))
+        results.map(concept => translationService.translateResults(concept, lang))
       );
     }
     
@@ -35,7 +35,7 @@ exports.search = async (req, res) => {
   } catch (error) {
     res.status(500).render('error', { 
       title: 'Error',
-      message: 'Error en la búsqueda médica',
+      message: 'Error en la búsqueda de calidad de software',
       error,
       lang: req.lang
     });
@@ -46,29 +46,29 @@ exports.diseaseDetails = async (req, res) => {
   try {
     const { uri } = req.params;
     const lang = req.lang || 'es';
-    const disease = await dbpediaService.getDiseaseDetails(decodeURIComponent(uri), lang);
+    let concept = await dbpediaService.getConceptDetails(decodeURIComponent(uri), lang);
     
-    if (!disease) {
+    if (!concept) {
       return res.status(404).render('error', {
-        title: 'Enfermedad no encontrada',
-        message: 'La enfermedad solicitada no fue encontrada',
+        title: 'Concepto no encontrado',
+        message: 'El concepto solicitado no fue encontrado',
         lang
       });
     }
     
     if (lang !== 'en') {
-      disease = await translationService.translateResults(disease, lang);
+      concept = await translationService.translateResults(concept, lang);
     }
     
     res.render('disease-detail', { 
-      title: disease.name,
-      disease,
+      title: concept.name || concept.label,
+      disease: concept,
       lang
     });
   } catch (error) {
     res.status(500).render('error', { 
       title: 'Error',
-      message: 'Error al cargar detalles de la enfermedad',
+      message: 'Error al cargar detalles del concepto',
       error,
       lang: req.lang
     });

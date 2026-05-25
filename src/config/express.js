@@ -52,11 +52,11 @@ module.exports = function(app) {
       t: function(key) {
         const translations = {
           'search_placeholder': {
-            es: 'Buscar enfermedades...',
-            en: 'Search diseases...',
-            pt: 'Procurar jogos...',
-            fr: 'Rechercher des jeux...',
-            de: 'Spiele suchen...'
+            es: 'Buscar temas de calidad de software...',
+            en: 'Search software quality topics...',
+            pt: 'Procurar temas de qualidade de software...',
+            fr: 'Rechercher des sujets de qualité logicielle...',
+            de: 'Themen zur Softwarequalität suchen...'
           },
           'search_button': {
             es: 'Buscar',

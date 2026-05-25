@@ -5,38 +5,51 @@ module.exports = {
     }
 
     const escapedTerm = term.replace(/"/g, '\\"').toLowerCase();
+    const softwareQualityTerms = [
+      'software quality',
+      'quality assurance',
+      'software testing',
+      'software metrics',
+      'code quality',
+      'maintainability',
+      'reliability',
+      'usability',
+      'software engineering',
+      'verification and validation',
+      'static analysis',
+      'code review'
+    ];
+
+    const topicFilters = softwareQualityTerms
+      .map(topic => `CONTAINS(LCASE(STR(?labelRaw)), "${topic}") || CONTAINS(LCASE(STR(COALESCE(?abstractRaw, \"\"))), "${topic}")`)
+      .join(' || ');
 
     return `
       PREFIX dbo: <http://dbpedia.org/ontology/>
       PREFIX dbp: <http://dbpedia.org/property/>
+      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
       PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-      SELECT DISTINCT ?disease ?label ?abstract ?icd10 ?specialty ?field WHERE {
-        
-        ?disease a dbo:Disease .
+      SELECT DISTINCT ?resource ?label ?abstract ?type ?thumbnail WHERE {
+        ?resource rdfs:label ?labelRaw .
+        FILTER (LANG(?labelRaw) = "${lang}" || LANG(?labelRaw) = "en" || LANG(?labelRaw) = "")
 
-        # Buscar por nombre en cualquier idioma
-        ?disease rdfs:label ?labelRaw .
-        FILTER (CONTAINS(LCASE(STR(?labelRaw)), "${escapedTerm}"))
-
-        # Preferir el idioma actual, pero aceptar cualquier idioma si no existe
-        OPTIONAL { 
-          ?disease rdfs:label ?labelLang .
-          FILTER (LANG(?labelLang)="${lang}")
+        OPTIONAL {
+          ?resource dbo:abstract ?abstractRaw .
+          FILTER (LANG(?abstractRaw) = "${lang}" || LANG(?abstractRaw) = "en")
         }
 
-        BIND(COALESCE(?labelLang, ?labelRaw) AS ?label)
+        OPTIONAL { ?resource rdf:type ?type }
+        OPTIONAL { ?resource dbo:thumbnail ?thumbnail }
 
-        OPTIONAL { 
-          ?disease dbo:abstract ?abstractRaw .
-          FILTER (LANG(?abstractRaw)="${lang}" || LANG(?abstractRaw)="en")
-        }
+        BIND(?labelRaw AS ?label)
+        BIND(COALESCE(?abstractRaw, "") AS ?abstract)
 
-        BIND(?abstractRaw AS ?abstract)
-
-        OPTIONAL { ?disease dbp:icd10 ?icd10 }
-        OPTIONAL { ?disease dbo:medicalSpecialty ?specialty }
-        OPTIONAL { ?disease dbo:field ?field }
+        FILTER (
+          CONTAINS(LCASE(STR(?labelRaw)), "${escapedTerm}") ||
+          CONTAINS(LCASE(STR(COALESCE(?abstractRaw, \"\"))), "${escapedTerm}") ||
+          ${topicFilters}
+        )
       }
       LIMIT 50
     `;
