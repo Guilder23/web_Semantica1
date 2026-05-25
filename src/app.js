@@ -13,8 +13,7 @@ const app = express();
 // Middlewares
 app.use(cookieParser());
 app.use(languageMiddleware);
-app.use(express.static(path.join(__dirname, 'public')));
-// Configuración
+// Configuración (incluye static files)
 config(app);
 
 // Rutas
