@@ -60,11 +60,11 @@ module.exports = function(app) {
       t: function(key) {
         const translations = {
           'search_placeholder': {
-            es: 'Buscar enfermedades...',
-            en: 'Search diseases...',
-            pt: 'Procurar jogos...',
-            fr: 'Rechercher des jeux...',
-            de: 'Spiele suchen...'
+            es: 'Buscar calidad de software...',
+            en: 'Search software quality...',
+            pt: 'Pesquisar qualidade de software...',
+            fr: 'Rechercher la qualite logicielle...',
+            de: 'Softwarequalitat suchen...'
           },
           'search_button': {
             es: 'Buscar',
@@ -129,6 +129,8 @@ module.exports = function(app) {
     // Establecer el idioma en res.locals para acceso en vistas
     res.locals.lang = req.lang;
     res.locals.supportedLangs = supportedLangs;
+    res.locals.currentPath = req.path;
+    res.locals.currentQuery = req.query.q || '';
     
     // Establecer cookie de idioma
     res.cookie('lang', req.lang, { maxAge: 900000, httpOnly: true });
