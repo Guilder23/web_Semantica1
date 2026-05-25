@@ -1,4 +1,5 @@
 const dbpediaService = require('../services/dbpediaService');
+const rdfService = require('../services/rdfService');
 const translationService = require('../services/translationService');
 
 exports.home = (req, res) => {
@@ -10,10 +11,13 @@ exports.home = (req, res) => {
 
 exports.search = async (req, res) => {
   try {
-    const { q } = req.query;
+    const { q, source } = req.query;
     const lang = req.lang || 'es';
-    
-    let results = await dbpediaService.searchDiseases(q, lang);
+    const normalizedSource = source === 'local' ? 'local' : 'dbpedia';
+
+    let results = normalizedSource === 'local'
+      ? await rdfService.searchDiseases(q, lang)
+      : await dbpediaService.searchDiseases(q, lang);
     
     if (lang !== 'en') {
       results = await Promise.all(
@@ -25,12 +29,15 @@ exports.search = async (req, res) => {
     console.log("Full results data:", JSON.stringify(results, null, 2));
     
     res.render('search-results', { 
-      title: `Resultados para "${q}"`,
+      title: normalizedSource === 'local'
+        ? `Resultados locales para "${q}"`
+        : `Resultados de DBpedia para "${q}"`,
       query: q,
       diseases: results,
       isEmpty: results.length === 0,
       lang,
-      showDetails: true // Nueva variable para la vista
+      showDetails: true,
+      searchSource: normalizedSource
     });
   } catch (error) {
     console.error('Search controller error:', error);
@@ -46,8 +53,12 @@ exports.search = async (req, res) => {
 exports.diseaseDetails = async (req, res) => {
   try {
     const { uri } = req.params;
+    const { source } = req.query;
     const lang = req.lang || 'es';
-    let disease = await dbpediaService.getDiseaseDetails(decodeURIComponent(uri), lang);
+    const normalizedSource = source === 'local' ? 'local' : 'dbpedia';
+    let disease = normalizedSource === 'local'
+      ? await rdfService.getDiseaseDetails(decodeURIComponent(uri), lang)
+      : await dbpediaService.getDiseaseDetails(decodeURIComponent(uri), lang);
     
     if (!disease) {
       return res.status(404).render('error', {
@@ -64,7 +75,8 @@ exports.diseaseDetails = async (req, res) => {
     res.render('disease-detail', { 
       title: disease.label || 'Detalle de Calidad de Software',
       disease,
-      lang
+      lang,
+      searchSource: normalizedSource
     });
   } catch (error) {
     console.error('Search controller details error:', error);

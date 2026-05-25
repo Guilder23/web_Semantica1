@@ -73,6 +73,20 @@ module.exports = function(app) {
             fr: 'Rechercher',
             de: 'Suchen'
           },
+          'search_dbpedia': {
+            es: 'Buscar en DBpedia',
+            en: 'Search in DBpedia',
+            pt: 'Pesquisar no DBpedia',
+            fr: 'Rechercher dans DBpedia',
+            de: 'In DBpedia suchen'
+          },
+          'search_local': {
+            es: 'Buscar localmente',
+            en: 'Search locally',
+            pt: 'Pesquisar localmente',
+            fr: 'Rechercher localement',
+            de: 'Lokal suchen'
+          },
           'no_results': {
             es: 'No se encontraron resultados',
             en: 'No results found',
@@ -131,6 +145,7 @@ module.exports = function(app) {
     res.locals.supportedLangs = supportedLangs;
     res.locals.currentPath = req.path;
     res.locals.currentQuery = req.query.q || '';
+    res.locals.currentSource = req.query.source || '';
     
     // Establecer cookie de idioma
     res.cookie('lang', req.lang, { maxAge: 900000, httpOnly: true });

@@ -260,7 +260,7 @@
                 <p class="disease-description">{{truncate abstract 150}}</p>
               </div>
               <div class="card-footer">
-                <a href="/disease/{{encodeURI uri}}?lang={{../lang}}" class="btn-details">
+                <a href="/disease/{{encodeURI uri}}?lang={{../lang}}{{#if ../searchSource}}&source={{../searchSource}}{{/if}}" class="btn-details">
                   {{#if (eq ../lang 'es')}}Ver detalles{{/if}}
                   {{#if (eq ../lang 'en')}}Details{{/if}}
                 </a>
