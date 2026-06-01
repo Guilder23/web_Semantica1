@@ -103,13 +103,30 @@
 
         <!-- Enlace a la página del enfermedad -->
         <div class="disease-footer">
-          <h3 class="references-title">
-            {{#if (eq ../lang 'es')}}Referencias{{/if}}
-            {{#if (eq ../lang 'en')}}References{{/if}}
-            {{#if (eq ../lang 'pt')}}Referências{{/if}}
-            {{#if (eq ../lang 'de')}}Referenzen{{/if}}
-            {{#if (eq ../lang 'fr')}}Références{{/if}}
-          </h3>
+          <div class="footer-info">
+            <h3 class="references-title">
+              {{#if (eq ../lang 'es')}}Referencias{{/if}}
+              {{#if (eq ../lang 'en')}}References{{/if}}
+              {{#if (eq ../lang 'pt')}}Referências{{/if}}
+              {{#if (eq ../lang 'de')}}Referenzen{{/if}}
+              {{#if (eq ../lang 'fr')}}Références{{/if}}
+            </h3>
+            <span class="result-source-badge {{#if (eq source 'dbpedia')}}source-dbpedia{{else}}source-local{{/if}}">
+              {{#if (eq source 'dbpedia')}}
+                {{#if (eq ../lang 'es')}}Resultado de DBpedia{{/if}}
+                {{#if (eq ../lang 'en')}}DBpedia result{{/if}}
+                {{#if (eq ../lang 'pt')}}Resultado do DBpedia{{/if}}
+                {{#if (eq ../lang 'de')}}DBpedia-Ergebnis{{/if}}
+                {{#if (eq ../lang 'fr')}}Résultat de DBpedia{{/if}}
+              {{else}}
+                {{#if (eq ../lang 'es')}}Resultado local{{/if}}
+                {{#if (eq ../lang 'en')}}Local result{{/if}}
+                {{#if (eq ../lang 'pt')}}Resultado local{{/if}}
+                {{#if (eq ../lang 'de')}}Lokales Ergebnis{{/if}}
+                {{#if (eq ../lang 'fr')}}Résultat local{{/if}}
+              {{/if}}
+            </span>
+          </div>
           <div class="disease-links">
             {{#if lenguaje}}
               <a href="#" class="disease-link" aria-disabled="true">
@@ -128,7 +145,7 @@
               </a>
             {{/if}}
             {{#if uri}}
-              <a href="/disease/{{encodeURI uri}}?lang={{../lang}}{{#if ../searchSource}}&source={{../searchSource}}{{/if}}" class="disease-link">
+              <a href="/disease/{{encodeURI uri}}?lang={{../lang}}&source={{source}}" class="disease-link">
                 <svg xmlns="http://www.w3.org/2000/svg" class="link-icon" viewBox="0 0 20 20" fill="currentColor">
                   <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
                 </svg>
@@ -188,12 +205,21 @@
   .detail-label { font-size:0.72rem; color:var(--muted); text-transform:uppercase }
   .detail-value { font-size:0.88rem; color:var(--text); font-weight:600 }
 
-  .disease-footer { padding:8px; background: transparent; border-top:1px solid rgba(255,255,255,0.02); display:flex; justify-content:space-between; align-items:center }
+  .disease-footer { padding:8px; background: transparent; border-top:1px solid rgba(255,255,255,0.02); display:flex; justify-content:space-between; align-items:center; gap:10px }
+  .footer-info { display:flex; flex-direction:column; gap:6px; align-items:flex-start }
   .references-title { font-size:0.75rem; color:var(--muted); margin:0 }
+  .result-source-badge { display:inline-block; font-size:0.72rem; font-weight:700; border-radius:999px; padding:4px 8px; line-height:1.2 }
+  .source-dbpedia { background: rgba(59, 130, 246, 0.18); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.35) }
+  .source-local { background: rgba(16, 185, 129, 0.18); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.35) }
   .disease-links { display:flex; gap:8px }
   .disease-link { display:inline-flex; align-items:center; gap:6px; padding:6px 8px; border-radius:8px; font-size:0.78rem; font-weight:600; color:var(--text); background:rgba(255,255,255,0.02); text-decoration:none }
   .disease-link:hover { background:rgba(255,255,255,0.03) }
   .link-icon { width:14px; height:14px }
 
-  @media (max-width: 768px) { .diseases-grid { grid-template-columns: 1fr } .results-title { font-size:1.25rem } }
+  @media (max-width: 768px) {
+    .diseases-grid { grid-template-columns: 1fr }
+    .results-title { font-size:1.25rem }
+    .disease-footer { flex-direction:column; align-items:flex-start }
+    .disease-links { width:100%; flex-wrap:wrap }
+  }
 </style>

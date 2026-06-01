@@ -11,13 +11,18 @@ exports.home = (req, res) => {
 
 exports.search = async (req, res) => {
   try {
-    const { q, source } = req.query;
+    const { q } = req.query;
     const lang = req.lang || 'es';
-    const normalizedSource = source === 'local' ? 'local' : 'dbpedia';
 
-    let results = normalizedSource === 'local'
-      ? await rdfService.searchDiseases(q, lang)
-      : await dbpediaService.searchDiseases(q, lang);
+    const [dbpediaResults, localResults] = await Promise.all([
+      dbpediaService.searchDiseases(q, lang),
+      rdfService.searchDiseases(q, lang)
+    ]);
+
+    let results = [
+      ...dbpediaResults.map(item => ({ ...item, source: 'dbpedia' })),
+      ...localResults.map(item => ({ ...item, source: 'local' }))
+    ];
     
     if (lang !== 'en') {
       results = await Promise.all(
@@ -29,15 +34,12 @@ exports.search = async (req, res) => {
     console.log("Full results data:", JSON.stringify(results, null, 2));
     
     res.render('search-results', { 
-      title: normalizedSource === 'local'
-        ? `Resultados locales para "${q}"`
-        : `Resultados de DBpedia para "${q}"`,
+      title: `Resultados para "${q}"`,
       query: q,
       diseases: results,
       isEmpty: results.length === 0,
       lang,
-      showDetails: true,
-      searchSource: normalizedSource
+      showDetails: true
     });
   } catch (error) {
     console.error('Search controller error:', error);
