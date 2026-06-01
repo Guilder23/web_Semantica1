@@ -1,35 +1,122 @@
 <header class="site-header mb-2">
-  <div class="container position-relative">
-    <div class="d-flex align-items-center justify-content-between" style="padding: 0.5rem 0;">
-      <a href="/" class="logo-link text-white text-decoration-none">
-        <span class="h6 mb-0" style="font-size: 1rem;">Calidad de Software</span>
+  <div class="container">
+    <div class="header-bar">
+      <a href="/" class="logo-link text-white text-decoration-none" aria-label="Ir al inicio">
+        {{!-- <span class="brand-mark">CS</span> --}}
+        <span class="brand-text">Calidad de Software</span>
       </a>
 
-      <div class="lang-top-right">
-        {{> language-selector }}
+      <div class="header-search">
+        {{> search-form }}
       </div>
-    </div>
 
-    <div class="search-row" style="padding: 0.5rem 0;">
-      <div class="d-flex justify-content-center">
-        <div class="w-100" style="max-width:720px">{{> search-form }}</div>
+      <div class="header-lang">
+        {{> language-selector }}
       </div>
     </div>
   </div>
 
   <style>
-    .site-header { 
-      background: linear-gradient(180deg, rgba(8,10,14,0.95), rgba(14,16,20,0.96));
-      padding: 0;
-      border-bottom: 1px solid rgba(255,255,255,0.03);
-      position: sticky; top: 0; z-index: 50;
-      backdrop-filter: blur(6px);
+    .site-header {
+      background: linear-gradient(180deg, rgba(8,10,14,0.96), rgba(10,14,20,0.92));
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
     }
 
-    .logo-link { display:flex; align-items:center; gap:8px; color:#ffffff; font-weight:600 }
+    .header-bar {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      min-height: 74px;
+      padding: 0.65rem 0;
+    }
 
-    .lang-top-right { position: absolute; top: 8px; right: 12px; }
+    .logo-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      white-space: nowrap;
+      flex: 0 0 auto;
+    }
 
-    .site-header { box-shadow: none; }
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #7c3aed, #06b6d4);
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      box-shadow: 0 8px 20px rgba(124,58,237,0.25);
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      font-size: 0.98rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      color: #f8fbff;
+    }
+
+    .header-search {
+      flex: 1 1 auto;
+      display: flex;
+      justify-content: center;
+      min-width: 0;
+    }
+
+    .header-search .search-form-improved {
+      width: 100%;
+    }
+
+    .header-search .search-container {
+      max-width: 680px;
+    }
+
+    .header-lang {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .site-header .search-form-improved.compact {
+      margin: 0;
+    }
+
+    @media (max-width: 992px) {
+      .header-bar {
+        gap: 0.75rem;
+      }
+
+      .brand-text {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-bar {
+        min-height: auto;
+        flex-wrap: wrap;
+        padding: 0.7rem 0 0.85rem;
+      }
+
+      .header-search {
+        order: 3;
+        flex-basis: 100%;
+      }
+
+      .header-lang {
+        margin-left: auto;
+      }
+    }
   </style>
 </header>
