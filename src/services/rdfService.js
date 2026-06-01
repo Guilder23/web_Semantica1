@@ -1,45 +1,22 @@
-const axios = require('axios');
-const fusekiConfig = require('../config/fuseki');
+const fs = require('fs');
+const path = require('path');
+const { QueryEngine } = require('@comunica/query-sparql');
+const { pathToFileURL } = require('url');
+const _rdfExt = require('rdf-ext');
+const rdf = _rdfExt.default || _rdfExt;
+const { RdfXmlParser } = require('rdfxml-streaming-parser');
 
+const rdfFilePath = path.join(__dirname, '../public/data/calidadSoftware.rdf');
+const rdfFileUrl = pathToFileURL(rdfFilePath).href;
 const QUALITY_SOFTWARE_NS = 'http://www.semanticweb.org/user/ontologies/2026/2/calidad_software.owl#';
 
 class RDFService {
-  _getEndpoint() {
-    return fusekiConfig.endpoint;
-  }
-
-  async _runQuery(query) {
-    const response = await axios.get(this._getEndpoint(), {
-      params: {
-        ...fusekiConfig.defaultQueryOptions,
-        query
-      },
-      headers: {
-        Accept: 'application/sparql-results+json'
-      }
-    });
-
-    const rows = response.data?.results?.bindings;
-    if (!Array.isArray(rows)) {
-      throw new Error('Invalid response structure from Fuseki');
-    }
-
-    return rows;
-  }
-
-  _value(binding, key) {
-    return binding?.[key]?.value;
-  }
-
-  _getLocalName(value) {
-    if (!value) return '';
-    const text = String(value);
-    return text.includes('#') ? text.split('#').pop() : text.split('/').pop();
+  constructor() {
+    this.engine = new QueryEngine();
   }
 
   async searchDiseases(term, lang = 'es') {
     const escapedTerm = String(term || '').replace(/"/g, '\\"').toLowerCase();
-
     const query = `
       PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
       PREFIX qs: <${QUALITY_SOFTWARE_NS}>
@@ -96,42 +73,67 @@ class RDFService {
       LIMIT 50
     `;
 
-    const rows = await this._runQuery(query);
+    const source = await this._getRdfjsSource();
+    const result = await this.engine.query(query, {
+      sources: [source]
+    });
 
-    return rows.map(binding => ({
-      uri: this._value(binding, 's'),
-      label: this._value(binding, 'label')
-        || this._value(binding, 'nombre')
-        || this._value(binding, 'nombreEntorno')
-        || this._value(binding, 'nombreMetrica')
-        || this._value(binding, 'idDefecto')
-        || this._value(binding, 'idRequerimiento')
-        || this._getLocalName(this._value(binding, 'type')),
-      tipo: this._getLocalName(this._value(binding, 'type')),
-      descripcion: this._value(binding, 'descripcion'),
-      estado: this._value(binding, 'estado'),
-      prioridad: this._value(binding, 'prioridad'),
-      severidad: this._value(binding, 'severidad'),
-      lenguaje: this._value(binding, 'lenguaje'),
-      version: this._value(binding, 'version'),
-      nombreEntorno: this._value(binding, 'nombreEntorno'),
-      nombreMetrica: this._value(binding, 'nombreMetrica'),
-      idDefecto: this._value(binding, 'idDefecto'),
-      idRequerimiento: this._value(binding, 'idRequerimiento')
+    let bindings;
+    if (typeof result.bindings === 'function') {
+      bindings = await result.bindings();
+    } else if (typeof result.execute === 'function') {
+      bindings = [];
+      const stream = await result.execute();
+      for await (const b of stream) bindings.push(b);
+    } else {
+      throw new Error('Unsupported query result type from Comunica');
+    }
+
+    return bindings.map(binding => ({
+      uri: binding.get('s')?.value,
+      label: binding.get('label')?.value
+        || binding.get('nombre')?.value
+        || binding.get('nombreEntorno')?.value
+        || binding.get('nombreMetrica')?.value
+        || binding.get('idDefecto')?.value
+        || binding.get('idRequerimiento')?.value
+        || binding.get('type')?.value?.split('#').pop(),
+      tipo: binding.get('type')?.value?.split('#').pop(),
+      descripcion: binding.get('descripcion')?.value,
+      estado: binding.get('estado')?.value,
+      prioridad: binding.get('prioridad')?.value,
+      severidad: binding.get('severidad')?.value,
+      lenguaje: binding.get('lenguaje')?.value,
+      version: binding.get('version')?.value,
+      nombreEntorno: binding.get('nombreEntorno')?.value,
+      nombreMetrica: binding.get('nombreMetrica')?.value,
+      idDefecto: binding.get('idDefecto')?.value,
+      idRequerimiento: binding.get('idRequerimiento')?.value
     }));
   }
 
   async getDiseaseDetails(uri) {
     const query = `
-      PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
       PREFIX qs: <${QUALITY_SOFTWARE_NS}>
-
       SELECT ?p ?o WHERE {
         <${uri}> ?p ?o .
       }
     `;
+    const source = await this._getRdfjsSource();
+    const result = await this.engine.query(query, {
+      sources: [source]
+    });
 
-    const rows = await this._runQuery(query);
+    let bindings;
+    if (typeof result.bindings === 'function') {
+      bindings = await result.bindings();
+    } else if (typeof result.execute === 'function') {
+      bindings = [];
+      const stream = await result.execute();
+      for await (const b of stream) bindings.push(b);
+    } else {
+      throw new Error('Unsupported query result type from Comunica');
+    }
 
     const details = {
       uri,
@@ -150,11 +152,17 @@ class RDFService {
       predicates: []
     };
 
-    rows.forEach(binding => {
-      const predicate = this._value(binding, 'p');
-      const object = this._value(binding, 'o');
-      const predicateName = this._getLocalName(predicate);
-      const objectName = this._getLocalName(object);
+    const getLocalName = (value) => {
+      if (!value) return '';
+      const text = String(value);
+      return text.includes('#') ? text.split('#').pop() : text.split('/').pop();
+    };
+
+    bindings.forEach(binding => {
+      const predicate = binding.get('p')?.value;
+      const object = binding.get('o')?.value;
+      const predicateName = getLocalName(predicate);
+      const objectName = getLocalName(object);
 
       details.predicates.push({ predicate: predicateName, value: object });
 
@@ -175,10 +183,27 @@ class RDFService {
     });
 
     if (!details.label) {
-      details.label = this._getLocalName(uri).replace(/_/g, ' ');
+      details.label = getLocalName(uri).replace(/_/g, ' ');
     }
 
     return details;
+  }
+
+  async _getRdfjsSource() {
+    if (this._rdfSource) return this._rdfSource;
+
+    const parser = new RdfXmlParser({ baseIRI: rdfFileUrl });
+    const input = fs.createReadStream(rdfFilePath);
+    const quadStream = input.pipe(parser);
+
+    const dataset = rdf.dataset();
+    for await (const quad of quadStream) {
+      dataset.add(quad);
+    }
+
+    // Comunica espera el tipo 'rdfjs' para fuentes RDF/JS
+    this._rdfSource = { type: 'rdfjs', value: dataset };
+    return this._rdfSource;
   }
 }
 
