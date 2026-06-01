@@ -28,5 +28,17 @@
     dbc:payload "[]".
 <http://example.org/dbpedia-cache#search/es%3Acalidad> a dbc:SearchEntry;
     dbc:key "es:calidad";
-    dbc:updatedAt "2026-06-01T02:51:56.737Z"^^xsd:dateTime;
+    dbc:updatedAt "2026-06-01T02:55:21.382Z"^^xsd:dateTime;
     dbc:payload "[]".
+<http://example.org/dbpedia-cache#search/en%3Acalidad> a dbc:SearchEntry;
+    dbc:key "en:calidad";
+    dbc:updatedAt "2026-06-01T02:56:04.794Z"^^xsd:dateTime;
+    dbc:payload "[]".
+<http://example.org/dbpedia-cache#search/de%3Acalidad> a dbc:SearchEntry;
+    dbc:key "de:calidad";
+    dbc:updatedAt "2026-06-01T02:56:16.892Z"^^xsd:dateTime;
+    dbc:payload "[]".
+<http://example.org/dbpedia-cache#search/en%3Aentorno> a dbc:SearchEntry;
+    dbc:key "en:entorno";
+    dbc:updatedAt "2026-06-01T02:56:47.403Z"^^xsd:dateTime;
+    dbc:payload "[{\"uri\":\"http://dbpedia.org/resource/Lazarus_(software)\",\"label\":\"Lazarus (software)\",\"programmingLanguage\":\"http://dbpedia.org/resource/Object_Pascal\",\"license\":\"http://dbpedia.org/resource/GNU_Lesser_General_Public_License\",\"dbpediaPage\":\"http://dbpedia.org/resource/Lazarus_(software)\",\"thumbnail\":\"http://commons.wikimedia.org/wiki/Special:FilePath/Lazarus_Logo.svg?width=300\"},{\"uri\":\"http://dbpedia.org/resource/Lazarus_(software)\",\"label\":\"Lazarus (software)\",\"programmingLanguage\":\"http://dbpedia.org/resource/Object_Pascal\",\"license\":\"http://dbpedia.org/resource/GNU_General_Public_License\",\"dbpediaPage\":\"http://dbpedia.org/resource/Lazarus_(software)\",\"thumbnail\":\"http://commons.wikimedia.org/wiki/Special:FilePath/Lazarus_Logo.svg?width=300\"},{\"uri\":\"http://dbpedia.org/resource/Borland_Kylix\",\"label\":\"Borland Kylix\",\"developer\":\"http://dbpedia.org/resource/Borland\",\"dbpediaPage\":\"http://dbpedia.org/resource/Borland_Kylix\"},{\"uri\":\"http://dbpedia.org/resource/Budgie_(desktop_environment)\",\"label\":\"Budgie (desktop environment)\",\"programmingLanguage\":\"WikidataIB |getValue |P277 |fetchwikidata=ALL |onlysourced=false\",\"license\":\"http://dbpedia.org/resource/GNU_Lesser_General_Public_License\",\"dbpediaPage\":\"http://dbpedia.org/resource/Budgie_(desktop_environment)\",\"thumbnail\":\"http://commons.wikimedia.org/wiki/Special:FilePath/Budgie.svg?width=300\"},{\"uri\":\"http://dbpedia.org/resource/Budgie_(desktop_environment)\",\"label\":\"Budgie (desktop environment)\",\"programmingLanguage\":\"WikidataIB |getValue |P277 |fetchwikidata=ALL |onlysourced=false\",\"license\":\"http://dbpedia.org/resource/GNU_General_Public_License\",\"dbpediaPage\":\"http://dbpedia.org/resource/Budgie_(desktop_environment)\",\"thumbnail\":\"http://commons.wikimedia.org/wiki/Special:FilePath/Budgie.svg?width=300\"}]".

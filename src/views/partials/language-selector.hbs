@@ -41,11 +41,12 @@
   <style>
     /* Compact icon-only language selector */
     .language-selector { position: relative; }
-    .lang-icon-btn { width:38px; height:38px; border-radius:12px; display:flex; align-items:center; justify-content:center; padding:0; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); color:#fff; box-shadow:none }
-    .lang-icon-btn:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(0,0,0,0.45); }
-    .flag-icon { width:20px; height:14px; border-radius:2px; display:block }
-    .dropdown-menu { min-width: 160px; border-radius:8px; box-shadow:0 10px 30px rgba(2,6,23,0.6); background:#0f1724; border:1px solid rgba(255,255,255,0.03); }
-    .dropdown-item { color:#e6eef8; padding:10px 14px }
-    .dropdown-item:hover { background:rgba(255,255,255,0.02) }
+    .lang-icon-btn { width:38px; height:38px; border-radius:12px; display:flex; align-items:center; justify-content:center; padding:0; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); color:#fff; box-shadow:none; transition: all 0.2s ease; }
+    .lang-icon-btn:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(0,0,0,0.45); background:rgba(255,255,255,0.08); }
+    .flag-icon { width:20px; height:14px; border-radius:2px; display:inline-block; margin-right:8px; flex-shrink:0; }
+    .dropdown-menu { min-width: 180px; border-radius:8px; box-shadow:0 10px 30px rgba(2,6,23,0.6); background:#0f1724; border:1px solid rgba(255,255,255,0.03); }
+    .dropdown-item { color:#e6eef8; padding:10px 14px; display:flex; align-items:center; gap:10px; transition: all 0.2s ease; }
+    .dropdown-item:hover { background:rgba(255,255,255,0.08); color:#fff; }
+    .dropdown-item .flag-icon { margin:0; }
   </style>
 </div>
