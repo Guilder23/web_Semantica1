@@ -1,13 +1,13 @@
 const axios = require('axios');
 const fs = require('fs/promises');
 const path = require('path');
-const { Parser, Writer, DataFactory } = require('n3');
+const { Parser, DataFactory } = require('n3');
+const { create } = require('xmlbuilder2');
 const dbpediaConfig = require('../config/dbpedia');
 const { searchSoftware } = require('../utils/sparqlQueries');
 
-const { namedNode, literal, quad } = DataFactory;
+const { namedNode } = DataFactory;
 const RDF_TYPE = namedNode('http://www.w3.org/1999/02/22-rdf-syntax-ns#type');
-const XSD_DATETIME = namedNode('http://www.w3.org/2001/XMLSchema#dateTime');
 const DBC_NS = 'http://example.org/dbpedia-cache#';
 const DBC_SEARCH_ENTRY = namedNode(`${DBC_NS}SearchEntry`);
 const DBC_DETAIL_ENTRY = namedNode(`${DBC_NS}DetailEntry`);
@@ -17,7 +17,7 @@ const DBC_PAYLOAD = namedNode(`${DBC_NS}payload`);
 
 class DBpediaService {
   constructor() {
-    this.cacheFilePath = path.join(__dirname, '../public/data/calidadSoftware.ttl');
+    this.cacheFilePath = path.join(__dirname, '../public/data/calidadSoftware.owl');
     this.cache = null;
   }
 
@@ -30,7 +30,7 @@ class DBpediaService {
 
     try {
       const raw = await fs.readFile(this.cacheFilePath, 'utf8');
-      this.cache = this._parseCacheFromTurtle(raw);
+      this.cache = this._parseCacheFromOwl(raw);
     } catch {
       this.cache = { search: {}, details: {} };
     }
@@ -39,8 +39,8 @@ class DBpediaService {
   async _persistCache() {
     await this._ensureCacheLoaded();
     await fs.mkdir(path.dirname(this.cacheFilePath), { recursive: true });
-    const ttlContent = await this._serializeCacheToTurtle();
-    await fs.writeFile(this.cacheFilePath, ttlContent, 'utf8');
+    const owlContent = await this._serializeCacheToOwl();
+    await fs.writeFile(this.cacheFilePath, owlContent, 'utf8');
   }
 
   _normalizeCache(cache) {
@@ -50,17 +50,18 @@ class DBpediaService {
     };
   }
 
-  _parseCacheFromTurtle(raw) {
+  _parseCacheFromOwl(raw) {
     const content = String(raw || '').trim();
     if (!content) {
       return { search: {}, details: {} };
     }
 
-    // Compatibilidad: si el archivo tenia JSON anterior, lo reutiliza y migra en memoria.
-    if (content.startsWith('{')) {
+    // Si es JSON antiguo, lo normaliza
+    if (content.startsWith('{') && !content.startsWith('<?xml')) {
       return this._normalizeCache(JSON.parse(content));
     }
 
+    // Parsea el RDF/XML como Turtle (N3 lo maneja igual)
     const parser = new Parser();
     const quads = parser.parse(content);
     const indexed = new Map();
@@ -123,40 +124,52 @@ class DBpediaService {
     return cache;
   }
 
-  async _serializeCacheToTurtle() {
-    const writer = new Writer({
-      prefixes: {
-        dbc: DBC_NS,
-        rdf: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
-        xsd: 'http://www.w3.org/2001/XMLSchema#'
-      }
+  async _serializeCacheToOwl() {
+    const doc = create({ version: '1.0', encoding: 'UTF-8' });
+    const rdf = doc.ele('rdf:RDF', {
+      'xmlns:rdf': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
+      'xmlns:dbc': DBC_NS,
+      'xmlns:xsd': 'http://www.w3.org/2001/XMLSchema#',
+      'xmlns:owl': 'http://www.w3.org/2002/07/owl#'
     });
 
+    // Agregar búsquedas
     for (const [key, value] of Object.entries(this.cache.search || {})) {
-      const subject = namedNode(`${DBC_NS}search/${encodeURIComponent(key)}`);
-      writer.addQuad(quad(subject, RDF_TYPE, DBC_SEARCH_ENTRY));
-      writer.addQuad(quad(subject, DBC_KEY, literal(key)));
-      writer.addQuad(quad(subject, DBC_UPDATED_AT, literal(value.updatedAt || new Date().toISOString(), XSD_DATETIME)));
-      writer.addQuad(quad(subject, DBC_PAYLOAD, literal(JSON.stringify(value.results || []))));
-    }
-
-    for (const [key, value] of Object.entries(this.cache.details || {})) {
-      const subject = namedNode(`${DBC_NS}details/${encodeURIComponent(key)}`);
-      writer.addQuad(quad(subject, RDF_TYPE, DBC_DETAIL_ENTRY));
-      writer.addQuad(quad(subject, DBC_KEY, literal(key)));
-      writer.addQuad(quad(subject, DBC_UPDATED_AT, literal(value.updatedAt || new Date().toISOString(), XSD_DATETIME)));
-      writer.addQuad(quad(subject, DBC_PAYLOAD, literal(JSON.stringify(value.details || null))));
-    }
-
-    return new Promise((resolve, reject) => {
-      writer.end((error, result) => {
-        if (error) {
-          reject(error);
-          return;
-        }
-        resolve(result);
+      const searchEntry = rdf.ele('rdf:Description', {
+        'rdf:about': `${DBC_NS}search/${encodeURIComponent(key)}`
       });
-    });
+      
+      searchEntry.ele('rdf:type', {
+        'rdf:resource': `${DBC_NS}SearchEntry`
+      });
+      
+      searchEntry.ele('dbc:key').txt(key);
+      searchEntry.ele('dbc:updatedAt', {
+        'rdf:datatype': 'http://www.w3.org/2001/XMLSchema#dateTime'
+      }).txt(value.updatedAt || new Date().toISOString());
+      
+      searchEntry.ele('dbc:payload').txt(JSON.stringify(value.results || []));
+    }
+
+    // Agregar detalles
+    for (const [key, value] of Object.entries(this.cache.details || {})) {
+      const detailEntry = rdf.ele('rdf:Description', {
+        'rdf:about': `${DBC_NS}details/${encodeURIComponent(key)}`
+      });
+      
+      detailEntry.ele('rdf:type', {
+        'rdf:resource': `${DBC_NS}DetailEntry`
+      });
+      
+      detailEntry.ele('dbc:key').txt(key);
+      detailEntry.ele('dbc:updatedAt', {
+        'rdf:datatype': 'http://www.w3.org/2001/XMLSchema#dateTime'
+      }).txt(value.updatedAt || new Date().toISOString());
+      
+      detailEntry.ele('dbc:payload').txt(JSON.stringify(value.details || null));
+    }
+
+    return doc.end({ prettyPrint: true });
   }
 
   _searchKey(term, lang) {
