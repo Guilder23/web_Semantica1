@@ -64,61 +64,114 @@ class DBpediaService {
     // Parsea el RDF/XML como Turtle (N3 lo maneja igual)
     const parser = new Parser();
     const quads = parser.parse(content);
-    const indexed = new Map();
+    
+    const cache = { search: {}, details: {} };
+    const searches = new Map();
+    const details = new Map();
+    const software = new Map();
 
+    // Primera pasada: recopilar datos
     for (const item of quads) {
       const subject = item.subject.value;
-      if (!indexed.has(subject)) {
-        indexed.set(subject, { type: null, key: null, updatedAt: null, payload: null });
-      }
-
-      const current = indexed.get(subject);
       const predicate = item.predicate.value;
 
-      if (predicate === RDF_TYPE.value) {
-        current.type = item.object.value;
+      // Índicar software
+      if (predicate === 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type' && 
+          item.object.value.includes('Software')) {
+        if (!software.has(subject)) {
+          software.set(subject, {});
+        }
       }
 
-      if (predicate === DBC_KEY.value && item.object.termType === 'Literal') {
-        current.key = item.object.value;
+      // Propiedades de software
+      if (software.has(subject)) {
+        if (predicate === 'http://www.w3.org/2000/01/rdf-schema#label' && item.object.termType === 'Literal') {
+          software.get(subject).label = item.object.value;
+        }
+        if (predicate.includes('developer')) {
+          software.get(subject).developer = item.object.value;
+        }
+        if (predicate.includes('programmingLanguage')) {
+          software.get(subject).programmingLanguage = item.object.value;
+        }
+        if (predicate.includes('license')) {
+          software.get(subject).license = item.object.value;
+        }
+        if (predicate === `${DBC_NS}latestReleaseVersion` && item.object.termType === 'Literal') {
+          software.get(subject).latestReleaseVersion = item.object.value;
+        }
+        if (predicate === `${DBC_NS}thumbnail`) {
+          software.get(subject).thumbnail = item.object.value;
+        }
       }
 
-      if (predicate === DBC_UPDATED_AT.value && item.object.termType === 'Literal') {
-        current.updatedAt = item.object.value;
+      // Búsquedas
+      if (predicate === `${DBC_NS}cacheKey` && item.object.termType === 'Literal') {
+        if (!searches.has(subject)) {
+          searches.set(subject, { key: item.object.value, results: [] });
+        } else {
+          searches.get(subject).key = item.object.value;
+        }
       }
 
-      if (predicate === DBC_PAYLOAD.value && item.object.termType === 'Literal') {
-        current.payload = item.object.value;
+      if (predicate === `${DBC_NS}updatedAt` && subject.includes('search/')) {
+        if (!searches.has(subject)) {
+          searches.set(subject, { results: [] });
+        }
+        searches.get(subject).updatedAt = item.object.value;
+      }
+
+      if (predicate === `${DBC_NS}hasCachedResult`) {
+        if (!searches.has(subject)) {
+          searches.set(subject, { results: [] });
+        }
+        searches.get(subject).results.push(item.object.value);
+      }
+
+      // Detalles
+      if (predicate === `${DBC_NS}cacheKey` && item.object.termType === 'Literal' && subject.includes('details/')) {
+        if (!details.has(subject)) {
+          details.set(subject, { key: item.object.value });
+        } else {
+          details.get(subject).key = item.object.value;
+        }
+      }
+
+      if (predicate === `${DBC_NS}updatedAt` && subject.includes('details/')) {
+        if (!details.has(subject)) {
+          details.set(subject, {});
+        }
+        details.get(subject).updatedAt = item.object.value;
       }
     }
 
-    const cache = { search: {}, details: {} };
+    // Construir caché con software completo
+    for (const [searchUri, searchData] of searches.entries()) {
+      if (!searchData.key) continue;
 
-    for (const entry of indexed.values()) {
-      if (!entry.key || !entry.payload) {
-        continue;
+      const results = [];
+      for (const softwareUri of searchData.results) {
+        if (software.has(softwareUri)) {
+          results.push({
+            uri: softwareUri,
+            ...software.get(softwareUri)
+          });
+        }
       }
 
-      let parsedPayload;
-      try {
-        parsedPayload = JSON.parse(entry.payload);
-      } catch {
-        continue;
-      }
+      cache.search[searchData.key] = {
+        updatedAt: searchData.updatedAt || new Date().toISOString(),
+        results
+      };
+    }
 
-      if (entry.type === DBC_SEARCH_ENTRY.value) {
-        cache.search[entry.key] = {
-          updatedAt: entry.updatedAt || new Date().toISOString(),
-          results: Array.isArray(parsedPayload) ? parsedPayload : []
-        };
-      }
+    for (const [detailsUri, detailsData] of details.entries()) {
+      if (!detailsData.key) continue;
 
-      if (entry.type === DBC_DETAIL_ENTRY.value) {
-        cache.details[entry.key] = {
-          updatedAt: entry.updatedAt || new Date().toISOString(),
-          details: parsedPayload && typeof parsedPayload === 'object' ? parsedPayload : null
-        };
-      }
+      cache.details[detailsData.key] = {
+        updatedAt: detailsData.updatedAt || new Date().toISOString(),
+        details: detailsData.uri || null
+      };
     }
 
     return cache;
@@ -128,27 +181,107 @@ class DBpediaService {
     const doc = create({ version: '1.0', encoding: 'UTF-8' });
     const rdf = doc.ele('rdf:RDF', {
       'xmlns:rdf': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
-      'xmlns:dbc': DBC_NS,
+      'xmlns:rdfs': 'http://www.w3.org/2000/01/rdf-schema#',
+      'xmlns:owl': 'http://www.w3.org/2002/07/owl#',
       'xmlns:xsd': 'http://www.w3.org/2001/XMLSchema#',
-      'xmlns:owl': 'http://www.w3.org/2002/07/owl#'
+      'xmlns:dbpedia': 'http://dbpedia.org/ontology/',
+      'xmlns:dbpedia-res': 'http://dbpedia.org/resource/',
+      'xmlns:dbc': DBC_NS
     });
 
-    // Agregar búsquedas
+    // Ontología
+    const ontology = rdf.ele('owl:Ontology', {
+      'rdf:about': DBC_NS
+    });
+    ontology.ele('rdfs:label').txt('DBpedia Semantic Cache');
+    ontology.ele('rdfs:comment').txt('Caché semántico estructurado de recursos DBpedia');
+    ontology.ele('owl:versionInfo').txt('1.0');
+
+    // Definir clases OWL
+    const softwareClass = rdf.ele('owl:Class', {
+      'rdf:about': `${DBC_NS}Software`
+    });
+    softwareClass.ele('rdfs:label').txt('Software');
+    softwareClass.ele('rdfs:comment').txt('Representa un recurso de software');
+
+    // Agregar búsquedas y software como Individuos
+    const addedSoftware = new Set();
+
     for (const [key, value] of Object.entries(this.cache.search || {})) {
+      // Entry de búsqueda
       const searchEntry = rdf.ele('rdf:Description', {
         'rdf:about': `${DBC_NS}search/${encodeURIComponent(key)}`
       });
       
       searchEntry.ele('rdf:type', {
-        'rdf:resource': `${DBC_NS}SearchEntry`
+        'rdf:resource': 'http://example.org/dbpedia-cache#SearchCache'
       });
       
-      searchEntry.ele('dbc:key').txt(key);
+      searchEntry.ele('dbc:cacheKey').txt(key);
       searchEntry.ele('dbc:updatedAt', {
         'rdf:datatype': 'http://www.w3.org/2001/XMLSchema#dateTime'
       }).txt(value.updatedAt || new Date().toISOString());
-      
-      searchEntry.ele('dbc:payload').txt(JSON.stringify(value.results || []));
+
+      // Crear Individuos para cada software en los resultados
+      const results = Array.isArray(value.results) ? value.results : [];
+      for (const result of results) {
+        if (!result.uri) continue;
+        
+        // Solo crear Individual si no existe ya
+        if (!addedSoftware.has(result.uri)) {
+          addedSoftware.add(result.uri);
+          
+          const softwareIndividual = rdf.ele('rdf:Description', {
+            'rdf:about': result.uri
+          });
+          
+          softwareIndividual.ele('rdf:type', {
+            'rdf:resource': `${DBC_NS}Software`
+          });
+          
+          if (result.label) {
+            softwareIndividual.ele('rdfs:label').txt(result.label);
+          }
+          
+          if (result.developer) {
+            softwareIndividual.ele('dbpedia:developer', {
+              'rdf:resource': result.developer
+            });
+          }
+          
+          if (result.programmingLanguage) {
+            softwareIndividual.ele('dbpedia:programmingLanguage', {
+              'rdf:resource': result.programmingLanguage
+            });
+          }
+          
+          if (result.license) {
+            softwareIndividual.ele('dbpedia:license', {
+              'rdf:resource': result.license
+            });
+          }
+          
+          if (result.latestReleaseVersion) {
+            softwareIndividual.ele('dbc:latestReleaseVersion')
+              .txt(result.latestReleaseVersion);
+          }
+          
+          if (result.thumbnail) {
+            softwareIndividual.ele('dbc:thumbnail', {
+              'rdf:resource': result.thumbnail
+            });
+          }
+          
+          softwareIndividual.ele('rdfs:seeAlso', {
+            'rdf:resource': result.uri
+          });
+        }
+        
+        // Vincular búsqueda con software
+        searchEntry.ele('dbc:hasCachedResult', {
+          'rdf:resource': result.uri
+        });
+      }
     }
 
     // Agregar detalles
@@ -158,15 +291,20 @@ class DBpediaService {
       });
       
       detailEntry.ele('rdf:type', {
-        'rdf:resource': `${DBC_NS}DetailEntry`
+        'rdf:resource': `${DBC_NS}DetailCache`
       });
       
-      detailEntry.ele('dbc:key').txt(key);
+      detailEntry.ele('dbc:cacheKey').txt(key);
       detailEntry.ele('dbc:updatedAt', {
         'rdf:datatype': 'http://www.w3.org/2001/XMLSchema#dateTime'
       }).txt(value.updatedAt || new Date().toISOString());
-      
-      detailEntry.ele('dbc:payload').txt(JSON.stringify(value.details || null));
+
+      // Vincular a recurso DBpedia si existe
+      if (value.details && value.details.uri) {
+        detailEntry.ele('dbc:dbpediaReference', {
+          'rdf:resource': value.details.uri
+        });
+      }
     }
 
     return doc.end({ prettyPrint: true });
